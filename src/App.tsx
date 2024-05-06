@@ -4,8 +4,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Bird } from "lucide-react";
 import { Blend } from "lucide-react";
 import { Fingerprint } from "lucide-react";
-
 import Blockchain from "./assets/blockchain.svg";
+import Chainlink from "./assets/chainlink.svg";
+import Avalanche from "./assets/avalanche.svg";
+import DataFeeds from "./assets/datafeeds.svg";
+import Functions from "./assets/functions.svg";
+import Automation from "./assets/automation.svg";
+import CCIP from "./assets/ccip.svg";
 
 export function App() {
   const connectToMetaMask = async () => {
@@ -70,7 +75,7 @@ export function App() {
       </div>
 
       <div className="bg-black flex justify-center mt-8">
-        <div className=" mx-auto">
+        <div className="mx-auto">
           <Card className="bg-black border-none">
             <CardContent>
               <img src={Blockchain} alt="Imagem" className="w-full" />
@@ -82,6 +87,9 @@ export function App() {
       {/* Cards */}
       <div className="bg-black">
         <div className="bg-black border-none max-w-[1400px] mx-auto">
+          <h2 className=" text-white  text-7xl text-center font-bold p-8">
+            Our values
+          </h2>
           <div className=" grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 p-8 mb-8">
             {/* Card 1 - Área 1 */}
             <div className="col-span-1 relative ">
@@ -126,6 +134,45 @@ export function App() {
               </div>
             </div>
           </div>
+          <Card className="bg-black max-w-[1400px] mx-auto border-none ">
+            <div>
+              <h2 className=" text-white text-7xl text-center font-bold p-8">
+                Built with
+              </h2>
+            </div>
+            <div className="grid grid-cols-6 gap-4">
+              {/* Primeira Linha */}
+              <div className="col-span-6 md:col-span-1">
+                <img src={Chainlink} alt="Chainlin" />
+              </div>
+              <div className="col-span-6 md:col-span-1">
+                <img src={Avalanche} alt="Avalanche" />
+              </div>
+              <div className="col-span-6 md:col-span-1">
+                <img src={DataFeeds} alt="DataFeeds" />
+              </div>
+              <div className="col-span-6 md:col-span-1">
+                <img src={Functions} alt="Functions" />
+              </div>
+              <div className="col-span-6 md:col-span-1">
+                <img src={Automation} alt="Automation" />
+              </div>
+              <div className="col-span-6 md:col-span-1">
+                <img src={CCIP} alt="CCIP" />
+              </div>
+            </div>
+          </Card>
+        </div>
+      </div>
+
+      {/* Foto  */}
+      <div className="bg-black flex justify-center p-8">
+        <div className="mx-auto">
+          <Card className="bg-black border-none">
+            <CardContent>
+              <img src={Blockchain} alt="Imagem" className="w-full" />
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>
