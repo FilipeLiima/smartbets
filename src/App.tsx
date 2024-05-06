@@ -1,13 +1,10 @@
 import { Button } from "./components/ui/button";
 import { Wallet } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import { Bird } from "lucide-react";
+import { Blend } from "lucide-react";
+import { Fingerprint } from "lucide-react";
+
 import Blockchain from "./assets/blockchain.svg";
 
 export function App() {
@@ -32,7 +29,6 @@ export function App() {
 
   return (
     <div className="bg-black h-screen w-screen relative">
-      {/* Imagem */}
       <img
         src="src/assets/logo.svg"
         alt="Logo"
@@ -40,9 +36,8 @@ export function App() {
         style={{ width: "200px", height: "auto" }}
       />
 
-      {/* Botão "How does it work?" */}
       <Button
-        className="absolute top-0 right-0 m-5 bg-black text-green-500 hover:bg-gray-800"
+        className="text-xl absolute top-0 right-0 m-5 bg-black text-green-500 hover:bg-gray-800"
         onClick={connectToMetaMask}
       >
         How does it work?
@@ -64,35 +59,24 @@ export function App() {
           </div>
           <div className="flex justify-start">
             <Button
-              className="p-5 m-5 hover:bg-gray-200 bg-green-500 text-black"
+              className="text-3x1 p-5 m-5 bg-green-500 hover:bg-green-400 text-black font-bold"
               onClick={connectToMetaMask}
             >
-              <Wallet className="w-5 h-5 mr-2" />
-              Connect
+              <Wallet className="w-7 h-7 mr-2" />
+              Launch APP
             </Button>
           </div>
         </Card>
       </div>
 
-      {/* Carrossel */}
-      <div className="bg-black flex justify-center mt-8 ">
-        <Carousel className="w-full max-w-[1400px] ">
-          <CarouselContent>
-            {Array.from({ length: 2 }).map((_, index) => (
-              <CarouselItem key={index}>
-                <div>
-                  <Card className="border-none">
-                    <CardContent className="flex items-center justify-center ">
-                      <img src={Blockchain} alt="Blockchain" />
-                    </CardContent>
-                  </Card>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
+      <div className="bg-black flex justify-center mt-8">
+        <div className=" mx-auto">
+          <Card className="bg-black border-none">
+            <CardContent>
+              <img src={Blockchain} alt="Imagem" className="w-full" />
+            </CardContent>
+          </Card>
+        </div>
       </div>
 
       {/* Cards */}
@@ -100,38 +84,44 @@ export function App() {
         <div className="bg-black border-none max-w-[1400px] mx-auto">
           <div className=" grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 p-8 mb-8">
             {/* Card 1 - Área 1 */}
-            <div className="col-span-1">
-              <div className="bg-gray-700 text-white flex flex-col p-16 text-center border-none">
-                <h3 className="text-white text-3xl font-medium mb-2">
-                  Liberdade
-                </h3>
+            <div className="col-span-1 relative ">
+              <div className="bg-gray-800 hover:bg-gray-700 text-white flex flex-col text-center p-16 border-none relative">
+                <div className="absolute top-0 left-0 right-0 flex items-center justify-center mt-4">
+                  <Bird className="text-white w-8 h-8" />
+                </div>
+                <h3 className="text-white text-3xl font-bold mb-2">Freedom</h3>
                 <p className="text-gray-400 text-lg">
-                  Decentralized Odds Mechanism Decentralized Odds Mechanism ,
-                  Decentralized.
+                  Bet without restrictions, with complete autonomy and
+                  transparency in all your betting choices within the platform
                 </p>
               </div>
             </div>
             {/* Card 2 - Área 2 */}
-            <div className="col-span-1">
-              <div className="bg-gray-700 text-white flex flex-col text-center p-16 border-none">
-                <h3 className="text-white text-3xl font-medium mb-2">
-                  Transparência
+            <div className="col-span-1 relative">
+              <div className="bg-gray-800 hover:bg-gray-700 text-white flex flex-col text-center p-16 border-none relative">
+                <div className="absolute top-0 left-0 right-0 flex items-center justify-center mt-4">
+                  <Blend className="text-white w-8 h-8" />
+                </div>
+                <h3 className="text-white text-3xl font-bold mb-2">
+                  Transparency
                 </h3>
                 <p className="text-gray-400 text-lg">
-                  Decentralized Odds Mechanism Decentralized Odds Mechanism ,
-                  Decentralized.
+                  Bet without restrictions, with complete autonomy and
+                  transparency in all your betting choices within the platform
                 </p>
               </div>
             </div>
+
             {/* Card 3 - Área 3 */}
-            <div className="col-span-1">
-              <div className="bg-gray-700 text-white flex flex-col text-center p-16 border-none">
-                <h3 className="text-white text-3xl font-medium mb-2">
-                  Segurança
-                </h3>
+            <div className="col-span-1 relative">
+              <div className="bg-gray-800 hover:bg-gray-700 text-white flex flex-col text-center p-16 border-none relative">
+                <div className="absolute top-0 left-0 right-0 flex items-center justify-center mt-4">
+                  <Fingerprint className="text-white w-8 h-8" />
+                </div>
+                <h3 className="text-white text-3xl font-bold mb-2">Security</h3>
                 <p className="text-gray-400 text-lg">
-                  Decentralized Odds Mechanism Decentralized Odds Mechanism ,
-                  Decentralized.
+                  Your personal and financial information while enjoying a
+                  reliable betting platform that is protected.
                 </p>
               </div>
             </div>
