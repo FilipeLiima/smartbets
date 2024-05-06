@@ -1,6 +1,14 @@
 import { Button } from "./components/ui/button";
 import { Wallet } from "lucide-react";
-import { Card } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import Blockchain from "./assets/blockchain.svg";
 
 export function App() {
   const connectToMetaMask = async () => {
@@ -23,7 +31,8 @@ export function App() {
   };
 
   return (
-    <div className="bg-black h-screen w-screen relative flex items-center">
+    <div className="bg-black h-screen w-screen relative">
+      {/* Imagem */}
       <img
         src="src/assets/logo.svg"
         alt="Logo"
@@ -31,6 +40,7 @@ export function App() {
         style={{ width: "200px", height: "auto" }}
       />
 
+      {/* Botão "How does it work?" */}
       <Button
         className="absolute top-0 right-0 m-5 bg-black text-green-500 hover:bg-gray-800"
         onClick={connectToMetaMask}
@@ -38,8 +48,9 @@ export function App() {
         How does it work?
       </Button>
 
-      <div className="bg-black flex flex-col items-start ml-10">
-        <Card className="bg-black p-6 border-none relative">
+      {/* Conteúdo */}
+      <div className="bg-black flex flex-col items-center ">
+        <Card className="bg-black p-6 border-none relative mt-16">
           <div className="w-auto">
             <h1 className="text-7xl text-white font-bold mb-6">
               <span className="block">Your safe bet,</span>
@@ -51,7 +62,6 @@ export function App() {
               way.
             </h2>
           </div>
-
           <div className="flex justify-start">
             <Button
               className="p-5 m-5 hover:bg-gray-200 bg-green-500 text-black"
@@ -62,6 +72,71 @@ export function App() {
             </Button>
           </div>
         </Card>
+      </div>
+
+      {/* Carrossel */}
+      <div className="bg-black flex justify-center mt-8 ">
+        <Carousel className="w-full max-w-[1400px] ">
+          <CarouselContent>
+            {Array.from({ length: 2 }).map((_, index) => (
+              <CarouselItem key={index}>
+                <div>
+                  <Card className="border-none">
+                    <CardContent className="flex items-center justify-center ">
+                      <img src={Blockchain} alt="Blockchain" />
+                    </CardContent>
+                  </Card>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+      </div>
+
+      {/* Cards */}
+      <div className="bg-black">
+        <div className="bg-black border-none max-w-[1400px] mx-auto">
+          <div className=" grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 p-8 mb-8">
+            {/* Card 1 - Área 1 */}
+            <div className="col-span-1">
+              <div className="bg-gray-700 text-white flex flex-col p-16 text-center border-none">
+                <h3 className="text-white text-3xl font-medium mb-2">
+                  Liberdade
+                </h3>
+                <p className="text-gray-400 text-lg">
+                  Decentralized Odds Mechanism Decentralized Odds Mechanism ,
+                  Decentralized.
+                </p>
+              </div>
+            </div>
+            {/* Card 2 - Área 2 */}
+            <div className="col-span-1">
+              <div className="bg-gray-700 text-white flex flex-col text-center p-16 border-none">
+                <h3 className="text-white text-3xl font-medium mb-2">
+                  Transparência
+                </h3>
+                <p className="text-gray-400 text-lg">
+                  Decentralized Odds Mechanism Decentralized Odds Mechanism ,
+                  Decentralized.
+                </p>
+              </div>
+            </div>
+            {/* Card 3 - Área 3 */}
+            <div className="col-span-1">
+              <div className="bg-gray-700 text-white flex flex-col text-center p-16 border-none">
+                <h3 className="text-white text-3xl font-medium mb-2">
+                  Segurança
+                </h3>
+                <p className="text-gray-400 text-lg">
+                  Decentralized Odds Mechanism Decentralized Odds Mechanism ,
+                  Decentralized.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
