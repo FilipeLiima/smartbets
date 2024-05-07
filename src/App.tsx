@@ -5,12 +5,15 @@ import { Bird } from "lucide-react";
 import { Blend } from "lucide-react";
 import { Fingerprint } from "lucide-react";
 import Blockchain from "./assets/blockchain.svg";
+import Bola from "./assets/bola.svg";
 import Chainlink from "./assets/chainlink.svg";
 import Avalanche from "./assets/avalanche.svg";
 import DataFeeds from "./assets/datafeeds.svg";
 import Functions from "./assets/functions.svg";
 import Automation from "./assets/automation.svg";
 import CCIP from "./assets/ccip.svg";
+import VRF from "./assets/vrf.svg";
+import Solidity from "./assets/solidity.svg";
 
 export function App() {
   const connectToMetaMask = async () => {
@@ -52,7 +55,7 @@ export function App() {
       <div className="bg-black flex flex-col items-center ">
         <Card className="bg-black p-6 border-none relative mt-16">
           <div className="w-auto">
-            <h1 className="text-7xl text-white font-bold mb-6">
+            <h1 className="text-7xl font-Inter text-white font-bold mb-6">
               <span className="block">Your safe bet,</span>
               <span className="block">transparent and</span>
               <span className="block">decentralized.</span>
@@ -134,13 +137,13 @@ export function App() {
               </div>
             </div>
           </div>
-          <Card className="bg-black max-w-[1400px] mx-auto border-none ">
+          <Card className="bg-black max-w-[1400px] border-none ">
             <div>
               <h2 className=" text-white text-7xl text-center font-bold p-8">
                 Built with
               </h2>
             </div>
-            <div className="grid grid-cols-6 gap-4">
+            <div className="grid grid-cols-4 gap-4 p-8">
               {/* Primeira Linha */}
               <div className="col-span-6 md:col-span-1">
                 <img src={Chainlink} alt="Chainlin" />
@@ -160,19 +163,57 @@ export function App() {
               <div className="col-span-6 md:col-span-1">
                 <img src={CCIP} alt="CCIP" />
               </div>
+              <div className="col-span-6 md:col-span-1">
+                <img src={VRF} alt="VRF" />
+              </div>
+              <div className="col-span-6 md:col-span-1">
+                <img src={Solidity} alt="Solidity" />
+              </div>
             </div>
           </Card>
         </div>
       </div>
 
-      {/* Foto  */}
-      <div className="bg-black flex justify-center p-8">
-        <div className="mx-auto">
-          <Card className="bg-black border-none">
-            <CardContent>
-              <img src={Blockchain} alt="Imagem" className="w-full" />
-            </CardContent>
-          </Card>
+      {/* Foto */}
+      <div className="bg-black flex justify-center p-20">
+        <div className="mx-auto max-w-[1400px] flex w-full">
+          {/* Coluna da Esquerda */}
+          <div className="w-1/2 relative">
+            <Card className="bg-black border-none">
+              <CardContent>
+                <img src={Bola} alt="Imagem" className="w-full" />
+              </CardContent>
+            </Card>
+          </div>
+          {/* Coluna da Direita */}
+          <div className="w-1/2 flex justify-center items-center">
+            <div className="text-white">
+              <h2 className="text-4xl font-bold mb-8">
+                Features and Functionality{" "}
+              </h2>
+              <p className="text-gray-400 text-lg mb-2 mb-8 ">
+                Coin Swap: This functionality allows users to exchange one
+                cryptocurrency for another in a direct and simplified way,
+                providing liquidity and accessibility to the different digital
+                assets available on the market.
+              </p>
+              <p className="text-gray-400 text-lg mb-2 mb-8">
+                Reward Exclusive NFTs: Refers to the distribution of exclusive
+                NFTs (Non-Fungible Tokens) as a reward for certain actions or
+                achievements within a platform or community. These NFTs often
+                represent unique digital items or collectibles, conferring
+                special status on holders.
+              </p>
+              <p className="text-gray-400 text-lg mb-2 mb-8">
+                Deflationary token: It is a type of cryptographic token whose
+                total supply decreases over time. This is generally achieved
+                through mechanisms built into the token, such as token burning
+                or transaction fees that are redistributed to existing holders.
+                This approach can help create scarcity and appreciation of the
+                token over time.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
