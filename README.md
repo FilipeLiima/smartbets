@@ -1,30 +1,22 @@
-# React + TypeScript + Vite
+### Tecnologias utilizadas:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Front end:
 
-Currently, two official plugins are available:
+- **React**: Biblioteca JavaScript para criar interfaces de usuário interativas e eficientes.
+- **Vite**: Um bundler de front-end moderno e leve que fornece desenvolvimento a quente, recarregamento de servidor zero e outras funcionalidades para melhorar a experiência do desenvolvedor.
+- **Typescript**: Uma superconjunto do JavaScript que adiciona tipagem estática para melhorar a confiabilidade e a legibilidade do código.
+- **TailwindCSS**: Uma biblioteca de CSS em primeiro lugar que fornece um conjunto de classes utilitárias para construir interfaces de usuário rapidamente e com estilo.
+- **Shadcn-UI**: Uma biblioteca de componentes React UI de código aberto que fornece uma ampla gama de componentes pré-construídos para acelerar o desenvolvimento.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Roadmap:
 
-## Expanding the ESLint configuration
+**Concluído**:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Login Page
 
-- Configure the top-level `parserOptions` property like this:
+**Em desenvolvimento**:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Página swap, lista de campeonatos, apostas
+- Integrar conexão com api para request de lista de tokens no modal com img na coingecko e resultados de camps;
+- Desenvolver interface de apostas;
+- Melhorar logica de autenticação metamask para exibição de hash

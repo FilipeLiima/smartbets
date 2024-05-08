@@ -1,3 +1,4 @@
+import { ethers } from "ethers";
 import { Button } from "./components/ui/button";
 import { Wallet } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -26,7 +27,7 @@ export function App() {
         const walletHash = "hash_da_carteira_autenticada";
 
         // Redireciona para a rota "/home" com o hash da carteira como parâmetro de rota
-        window.location.href = `/home?walletHash=${walletHash}`;
+        window.location.href = `/auth?walletHash=${walletHash}`;
       } catch (error) {
         console.error("Error connecting to MetaMask:", error);
       }
