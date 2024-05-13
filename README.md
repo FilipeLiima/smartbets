@@ -18,6 +18,6 @@
 
 - Página swap, lista de campeonatos, apostas
 - Integrar conexão DATA FEEDS para consumir dados da api do coingecko e gerar lista de tokens e icones;
-- Integrar conexão DATA FEEDS para consumir dados da api externa para gerar resultados de campeonatos
+- Integrar conexão DATA FEEDS para consumir dados da api externa para gerar resultados de campeonatos;
 - Desenvolver interface de apostas;
 - Melhorar logica de autenticação metamask para exibição de hash
