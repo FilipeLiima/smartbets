@@ -17,6 +17,7 @@
 **Em desenvolvimento**:
 
 - Página swap, lista de campeonatos, apostas
-- Integrar conexão com api para request de lista de tokens no modal com img na coingecko e resultados de camps;
+- Integrar conexão DATA FEEDS para consumir dados da api do coingecko e gerar lista de tokens e icones;
+- Integrar conexão DATA FEEDS para consumir dados da api externa para gerar resultados de campeonatos
 - Desenvolver interface de apostas;
 - Melhorar logica de autenticação metamask para exibição de hash
