@@ -32,7 +32,7 @@ export function Auth() {
           <Button
             className={`${
               activeTab === "swap" ? "bg-gray-600" : "bg-gray-400"
-            } py-2 px-4 m-2 rounded text-black`}
+            } hover:bg-gray-700 py-2 px-4 m-2 rounded text-black`}
             onClick={() => setActiveTab("swap")}
           >
             SWAP
@@ -40,7 +40,7 @@ export function Auth() {
           <Button
             className={`${
               activeTab === "gamesStatus" ? "bg-gray-600" : "bg-gray-400"
-            } py-2 px-4 m-2 rounded text-black`}
+            } hover:bg-gray-700 py-2 px-4 m-2 rounded text-black`}
             onClick={() => setActiveTab("gamesStatus")}
           >
             GAMES IN PROGRESS
@@ -48,7 +48,7 @@ export function Auth() {
           <Button
             className={`${
               activeTab === "bet" ? "bg-gray-600" : "bg-gray-400"
-            } py-2 px-4 m-2 rounded text-black`}
+            } hover:bg-gray-700 py-2 px-4 m-2 rounded text-black`}
             onClick={() => setActiveTab("bet")}
           >
             BET
