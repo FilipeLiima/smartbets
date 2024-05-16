@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
@@ -17,7 +16,6 @@ import { ChevronDown } from "lucide-react";
 import { UserRoundCheck } from "lucide-react";
 
 export function Swap() {
-  const { walletHash } = useParams();
   return (
     <div className="bg-black flex flex-col items-center justify-center">
       <h1 className="text-white text-5xl font-bold mt-8 mb-8 text-left">
@@ -28,7 +26,7 @@ export function Swap() {
           {/* Card 1 */}
           <Button className="bg-green-600 hover:bg-green-700 text-lg text-black font-bold py-2 px-4 rounded-2xl mb-4 flex items-center">
             <UserRoundCheck className="mr-2 h-5 w-5 text-black" />
-            {walletHash ? walletHash : "Connected wallet"}
+            {"Connected wallet"}
           </Button>
           <h2 className="text-white font-bold mb-4 text-3xl">
             Access staking by swapping USDT or purchasing the network's native

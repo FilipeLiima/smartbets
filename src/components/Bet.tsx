@@ -4,7 +4,14 @@ import Bayern from "../assets/bayern.svg";
 
 export function Bet() {
   return (
-    <div className="container mx-auto px-4 p-6">
+    <div className="container mx-auto px-4 ">
+      <div className="text-white text-center p-8">
+        <h2 className="text-5xl font-bold">Bets</h2>
+        <h3 className="text-xl mt-4 text-gray-400">Champions League</h3>
+        <p className="text-gray-400 mt-2 font-bold text-5xl">
+          Bayern vs Real Madrid
+        </p>
+      </div>
       <div className="md:flex md:justify-between">
         {/* Coluna da esquerda */}
         <div className="md:w-1/3">
