@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import Real from "../assets/real.svg";
 import Bayern from "../assets/bayern.svg";
@@ -63,7 +64,7 @@ export function Games() {
         <div className="md:w-2/3">
           {/* Card com o conteúdo do iframe */}
           <div className="mb-4 h-full flex flex-col justify-between">
-            <Card className="bg-black text-white flex flex-col text-center p-8 border-none mx-4 h-full">
+            <Card className="bg-gray-800 text-white flex flex-col text-center p-8 border-none mx-4 h-full">
               {/* Conteúdo do iframe */}
               <div
                 style={{ width: "100%", height: "100%", position: "relative" }}
