@@ -49,7 +49,7 @@ export function Games() {
             {/* Coluna da esquerda */}
             <div className="md:w-1/3">
               {[1, 2].map((index) => (
-                <div className="mb-4" key={index}>
+                <div className="mb-8" key={index}>
                   <Card className="bg-gray-800 hover:bg-gray-700 text-white flex flex-col text-center p-8 border-none mx-4">
                     <h3 className="text-white text-3xl font-bold mb-2">
                       Bayern vs Real Madrid
@@ -78,7 +78,7 @@ export function Games() {
             {/* Coluna do meio */}
             <div className="md:w-1/3">
               {[4, 5].map((index) => (
-                <div className="mb-4" key={index}>
+                <div className="mb-8" key={index}>
                   <Card className="bg-gray-800 hover:bg-gray-700 text-white flex flex-col text-center p-8 border-none mx-4">
                     <h3 className="text-white text-3xl font-bold mb-2">
                       Bayern vs Real Madrid
@@ -107,7 +107,7 @@ export function Games() {
             {/* Coluna da direita */}
             <div className="md:w-1/3">
               {[7, 8].map((index) => (
-                <div className="mb-4" key={index}>
+                <div className="mb-8" key={index}>
                   <Card className="bg-gray-800 hover:bg-gray-700 text-white flex flex-col text-center p-8 border-none mx-4">
                     <h3 className="text-white text-3xl font-bold mb-2">
                       Bayern vs Real Madrid

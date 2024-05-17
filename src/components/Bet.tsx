@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CircleArrowLeft } from "lucide-react";
@@ -6,12 +5,6 @@ import Real from "../assets/real.svg";
 import Bayern from "../assets/bayern.svg";
 
 export function Bet() {
-  const navigate = useNavigate();
-
-  const handleBackToGames = () => {
-    navigate("/games");
-  };
-
   return (
     <div className="container mx-auto px-4 ">
       <div className="text-white text-center p-8">
@@ -19,13 +12,6 @@ export function Bet() {
         <h3 className="text-xl mt-4 text-gray-400">
           Select options to continue:
         </h3>
-        <Button
-          className="text-white flex items-center"
-          onClick={handleBackToGames}
-        >
-          <CircleArrowLeft size="32" className="mr-2" />
-          Back
-        </Button>
       </div>
       <div className="md:flex md:justify-between">
         {/* Coluna da esquerda */}

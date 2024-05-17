@@ -23,11 +23,8 @@ export function App() {
         await window.ethereum.request({ method: "eth_requestAccounts" });
         alert("Connected to MetaMask successfully!");
 
-        // Obtém o hash da carteira autenticada
-        const walletHash = "hash_da_carteira_autenticada";
-
         // Redireciona para a rota "/home" com o hash da carteira como parâmetro de rota
-        window.location.href = `/auth?walletHash=${walletHash}`;
+        window.location.href = `/auth`;
       } catch (error) {
         console.error("Error connecting to MetaMask:", error);
       }
