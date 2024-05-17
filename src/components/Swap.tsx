@@ -33,7 +33,7 @@ export function Swap() {
       <div className="flex justify-center">
         <Card className="bg-gray-900 border-none w-[650px] m-4 p-6">
           {/* Card 1 */}
-          <Button className="bg-green-600 hover:bg-green-700 text-lg text-black font-bold py-2 px-4 rounded-2xl mb-4 flex items-center">
+          <Button className="bg-gray-500 hover:bg-gray-600 text-lg text-black font-bold py-2 px-4 rounded-2xl mb-4 flex items-center">
             <UserRoundCheck className="mr-2 h-5 w-5 text-black" />
             {"Connected wallet"}
           </Button>
