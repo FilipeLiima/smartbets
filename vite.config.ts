@@ -9,4 +9,13 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  server: {
+    proxy: {
+      "/v4": {
+        target: "https://api.football-data.org",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/v4/, ""),
+      },
+    },
+  },
 });

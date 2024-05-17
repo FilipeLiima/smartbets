@@ -13,10 +13,6 @@ export function Auth() {
         return <Swap />;
       case "gamesStatus":
         return <Games />;
-      case "bet":
-        return <Bet />;
-      default:
-        return <Swap />;
     }
   };
 
@@ -43,15 +39,7 @@ export function Auth() {
             } hover:bg-gray-700 py-2 px-4 m-2 rounded text-black`}
             onClick={() => setActiveTab("gamesStatus")}
           >
-            GAMES IN PROGRESS
-          </Button>
-          <Button
-            className={`${
-              activeTab === "bet" ? "bg-gray-600" : "bg-gray-400"
-            } hover:bg-gray-700 py-2 px-4 m-2 rounded text-black`}
-            onClick={() => setActiveTab("bet")}
-          >
-            BET
+            GAMES
           </Button>
         </div>
       </div>

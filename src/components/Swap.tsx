@@ -18,9 +18,18 @@ import { UserRoundCheck } from "lucide-react";
 export function Swap() {
   return (
     <div className="bg-black flex flex-col items-center justify-center">
-      <h1 className="text-white text-5xl font-bold mt-8 mb-8 text-left">
-        Defi betting
-      </h1>
+      <div className="container mx-auto px-4">
+        <div className=" text-gray-400 text-center p-8">
+          <h2 className="text-4xl font-bold">Swap Your Coin</h2>
+
+          <p className="text-green-400 mt-2 font-bold text-7xl">
+            Conversion At Any Time
+          </p>
+          <h3 className="text-xl mt-4 text-gray-400">
+            Choose between the different currencies available:{" "}
+          </h3>
+        </div>
+      </div>
       <div className="flex justify-center">
         <Card className="bg-gray-900 border-none w-[650px] m-4 p-6">
           {/* Card 1 */}
