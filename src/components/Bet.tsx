@@ -1,11 +1,17 @@
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { MoveLeft } from "lucide-react";
+import { CircleArrowLeft } from "lucide-react";
 import Real from "../assets/real.svg";
 import Bayern from "../assets/bayern.svg";
 
 export function Bet() {
+  const navigate = useNavigate();
+
+  const handleBackToGames = () => {
+    navigate("/games");
+  };
+
   return (
     <div className="container mx-auto px-4 ">
       <div className="text-white text-center p-8">
@@ -15,9 +21,9 @@ export function Bet() {
         </h3>
         <Button
           className="text-white flex items-center"
-          onClick={() => history.push("/games")}
+          onClick={handleBackToGames}
         >
-          <MoveLeft size="32" className="mr-2" />
+          <CircleArrowLeft size="32" className="mr-2" />
           Back
         </Button>
       </div>
