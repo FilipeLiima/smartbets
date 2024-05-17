@@ -17,7 +17,7 @@ import { UserRoundCheck } from "lucide-react";
 
 export function Swap() {
   return (
-    <div className="bg-black flex flex-col items-center justify-center">
+    <div className="h-screen bg-black container mx-auto px-4">
       <div className="container mx-auto px-4">
         <div className=" text-gray-400 text-center p-8">
           <h2 className="text-4xl font-bold">Swap Your Coin</h2>
@@ -138,7 +138,7 @@ export function Swap() {
           </div>
 
           <div className="flex justify-center">
-            <Button className="bg-green-600 hover:bg-green-700 text-black text-xl font-bold py-2 px-4 rounded-2xl w-full p-6 mt-5">
+            <Button className="bg-green-600 hover:bg-green-700 text-black text-xl font-bold py-2 px-4 rounded-2xl w-full p-6 mt-5 ">
               SWAP
             </Button>
           </div>

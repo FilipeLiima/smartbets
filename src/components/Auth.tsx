@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Swap } from "./Swap.tsx";
 import { Games } from "./Games.tsx";
-import { Bet } from "./Bet.tsx";
 
 export function Auth() {
   const [activeTab, setActiveTab] = useState("swap");
@@ -17,7 +16,7 @@ export function Auth() {
   };
 
   return (
-    <div className="bg-black h-screen text-white">
+    <div className="bg-black text-white">
       {/* Título no topo direito */}
       <div className="absolute top-0 right-0 p-4">
         <h1 className="text-xl font-bold">Hash Carteira</h1>

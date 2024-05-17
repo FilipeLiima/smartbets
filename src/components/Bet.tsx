@@ -1,4 +1,7 @@
+import { useHistory } from "react-router-dom";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { MoveLeft } from "lucide-react";
 import Real from "../assets/real.svg";
 import Bayern from "../assets/bayern.svg";
 
@@ -6,11 +9,17 @@ export function Bet() {
   return (
     <div className="container mx-auto px-4 ">
       <div className="text-white text-center p-8">
-        <h2 className="text-5xl font-bold">Bets</h2>
-        <h3 className="text-xl mt-4 text-gray-400">Champions League</h3>
-        <p className="text-gray-400 mt-2 font-bold text-5xl">
-          Bayern vs Real Madrid
-        </p>
+        <p className="text-green-400 mt-2 font-bold text-7xl">Bet Details</p>
+        <h3 className="text-xl mt-4 text-gray-400">
+          Select options to continue:
+        </h3>
+        <Button
+          className="text-white flex items-center"
+          onClick={() => history.push("/games")}
+        >
+          <MoveLeft size="32" className="mr-2" />
+          Back
+        </Button>
       </div>
       <div className="md:flex md:justify-between">
         {/* Coluna da esquerda */}
@@ -79,7 +88,9 @@ export function Bet() {
             {/* Conteúdo do card 3 */}
             <Card className="bg-gray-800 hover:bg-gray-700 text-white flex flex-col text-center p-8 border-none mx-4 h-full">
               {/* Frase inicial */}
-              <p className="text-white text-xl mb-12">You are betting: </p>
+              <p className="text-white text-3xl font-bold  mb-2">
+                You are betting:{" "}
+              </p>
               {/* Valor grande */}
               <div className="flex-1 flex flex-col justify-center items-center mb-2">
                 <p className="text-9xl font-bold">$ 10</p>
@@ -101,12 +112,16 @@ export function Bet() {
       {/* Novo Card abaixo dos cards existentes */}
       <div className="container mx-auto px-4 p-6">
         <Card className="bg-gray-800 hover:bg-gray-700 text-white flex flex-col text-center p-8 border-none mx-4">
-          {/* Conteúdo do novo card */}
           <h3 className="text-white text-3xl font-bold mb-2">Bet summary</h3>
-          <p className="text-gray-400 text-lg">
-            Bet summaries will be shown here. Type of bets, date, teams, values,
-            etc.
-          </p>
+          <div className="text-left">
+            <p className="text-gray-400 text-lg">Type of bets: Option 1</p>
+            <p className="text-gray-400 text-lg">Date bet: 2024-05-19</p>
+            <p className="text-gray-400 text-lg">
+              Teams: Bayern vs Real Madrid
+            </p>
+            <p className="text-gray-400 text-lg">Values: $10</p>
+            <p className="text-gray-400 text-lg">Status: Pending</p>
+          </div>
         </Card>
       </div>
     </div>

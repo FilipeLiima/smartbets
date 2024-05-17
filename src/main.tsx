@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { App } from "./App.tsx";
 import { Auth } from "./components/Auth.tsx";
+import { Games } from "./components/Games.tsx";
 import "./global.css";
 
 ReactDOM.render(
@@ -11,6 +12,7 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/auth" element={<Auth />} />{" "}
+        <Route path="/games" element={<Games />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
