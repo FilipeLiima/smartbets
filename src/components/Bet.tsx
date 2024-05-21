@@ -8,7 +8,7 @@ export function Bet() {
   return (
     <div className="container mx-auto px-4 ">
       <div className="text-white text-center p-8">
-        <p className="text-green-400 mt-2 font-bold text-7xl">Bet Details</p>
+        <p className="text-green-400 mt-2 font-bold text-7xl">Bet To Win</p>
         <h3 className="text-xl mt-4 text-gray-400">
           Select options to continue:
         </h3>
@@ -103,7 +103,7 @@ export function Bet() {
       </div>
       {/* Novo Card abaixo dos cards existentes */}
       <div className="container mx-auto px-4 p-6">
-        <Card className="bg-gray-800 hover:bg-gray-700 text-white flex flex-col text-center p-8 border-none mx-4">
+        <Card className="bg-gray-800 hover:bg-gray-700 text-white flex flex-col text-center p-8 border-none mx-auto">
           <h3 className="text-white text-3xl font-bold mb-2">Bet summary</h3>
           <div className="text-left">
             <p className="text-gray-400 text-lg">Type of bets: Option 1</p>
@@ -113,6 +113,17 @@ export function Bet() {
             </p>
             <p className="text-gray-400 text-lg">Values: $10</p>
             <p className="text-gray-400 text-lg">Status: Pending</p>
+          </div>
+        </Card>
+      </div>
+      {/* Adicionando um novo card abaixo do resumo da aposta */}
+      <div className="container mx-auto px-4 p-6">
+        <Card className="bg-gray-800 hover:bg-gray-700 text-white flex flex-col text-center p-8 border-none mx-auto">
+          <h3 className="text-white text-3xl font-bold mb-2">More info:</h3>
+          <div className="text-left">
+            <p className="text-gray-400 text-lg">Tabela</p>
+            <p className="text-gray-400 text-lg">Estatisticas</p>
+            <p className="text-gray-400 text-lg">Demais dados</p>
           </div>
         </Card>
       </div>

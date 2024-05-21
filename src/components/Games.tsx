@@ -39,10 +39,10 @@ export function Games() {
       {!mostrarAposta && (
         <div className="text-center">
           <h2 className="text-4xl font-bold text-gray-400">Featured Game</h2>
-          <p className="text-green-400 mt-2 font-bold text-7xl ">
+          <p className="text-green-400 mt-4 font-bold text-7xl ">
             Brazilian Championship Series A
           </p>
-          <h3 className=" text-xl mt-4 mb-4 text-gray-400">
+          <h3 className=" text-xl mt-4 mb-6 text-gray-400">
             Choose your team to bet on:{" "}
           </h3>
           <div className="md:flex md:flex-wrap md:justify-center">

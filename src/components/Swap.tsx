@@ -19,7 +19,7 @@ export function Swap() {
   return (
     <div className="h-screen bg-black container mx-auto px-4">
       <div className="container mx-auto px-4">
-        <div className=" text-gray-400 text-center p-8">
+        <div className=" text-gray-400 text-center">
           <h2 className="text-4xl font-bold">Swap Your Coin</h2>
 
           <p className="text-green-400 mt-2 font-bold text-7xl">
