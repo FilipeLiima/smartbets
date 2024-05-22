@@ -121,9 +121,9 @@ export function Bet() {
         <Card className="bg-gray-800 hover:bg-gray-700 text-white flex flex-col text-center p-8 border-none mx-auto">
           <h3 className="text-white text-3xl font-bold mb-2">More info:</h3>
           <div className="text-left">
-            <p className="text-gray-400 text-lg">Tabela</p>
-            <p className="text-gray-400 text-lg">Estatisticas</p>
-            <p className="text-gray-400 text-lg">Demais dados</p>
+            <p className="text-gray-400 text-lg">Table</p>
+            <p className="text-gray-400 text-lg">Statistics</p>
+            <p className="text-gray-400 text-lg">Too much data</p>
           </div>
         </Card>
       </div>

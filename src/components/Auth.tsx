@@ -19,7 +19,7 @@ export function Auth() {
     <div className="bg-black text-white">
       {/* Título no topo direito */}
       <div className="absolute top-0 right-0 p-4">
-        <h1 className="text-xl font-bold">Hash Carteira</h1>
+        <h1 className="text-xl font-bold">ID Wallet</h1>
       </div>
       {/* Menu centralizado no topo da página */}
       <div className="w-full flex justify-center mb-8 p-8">
