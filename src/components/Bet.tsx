@@ -195,15 +195,29 @@ export function Bet() {
           </div>
         </Card>
       </div>
-
       {/* Adicionando um novo card abaixo do resumo da aposta */}
-      <div className="container mx-auto px-4 p-6">
+      <div className="container mx-auto px-4 p-2">
         <Card className="bg-gray-800 hover:bg-gray-700 text-white flex flex-col text-center p-8 border-none mx-auto">
-          <h3 className="text-white text-3xl font-bold mb-2">More info:</h3>
+          <h3 className="text-white text-3xl p-4 font-bold mb-4">
+            Real-Time Statistics
+          </h3>
           <div className="text-left">
-            <p className="text-gray-400 text-lg">Table</p>
-            <p className="text-gray-400 text-lg">Statistics</p>
-            <p className="text-gray-400 text-lg">Too much data</p>
+            <div className="iframe-container mb-4">
+              <iframe
+                id="sofa-standings-embed-83-58766"
+                src="https://widgets.sofascore.com/pt-BR/embed/tournament/83/season/58766/standings/Brasileiro%20Serie%20A?widgetTitle=Brasileiro%20Serie%20A&showCompetitionLogo=true&v=2"
+                style={{ height: "1031px", maxWidth: "568px", width: "100%" }}
+                frameBorder="0"
+                scrolling="no"
+              ></iframe>
+              <div
+                style={{
+                  fontSize: "12px",
+                  fontFamily: "Arial, sans-serif",
+                  textAlign: "left",
+                }}
+              ></div>
+            </div>
           </div>
         </Card>
       </div>
