@@ -30,10 +30,37 @@ export function Bet() {
       setPotentialWin(potentialWin.toFixed(2)); // Define o potencial de ganho
     }
   };
+  const getCurrentDate = () => {
+    const date = new Date();
+    const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1)
+      .toString()
+      .padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
+    return formattedDate;
+  };
+  const getTypeOfBet = () => {
+    let typeOfBet = "";
+    switch (selectedOdds) {
+      case 4.5:
+        typeOfBet = "Bayern";
+        break;
+      case 1.34:
+        typeOfBet = "Draw";
+        break;
+      case 8.75:
+        typeOfBet = "Real Madrid";
+        break;
+      default:
+        typeOfBet = "Unknown";
+    }
+    return typeOfBet;
+  };
   return (
     <div className="container mx-auto px-4 ">
       <div className="text-white text-center p-8">
-        <p className="text-green-400 mt-2 font-bold text-7xl">Bet To Win</p>
+        <h2 className="text-4xl font-bold text-gray-400">Customize Your Bet</h2>
+        <p className="text-green-400 mt-2 font-bold text-7xl">
+          Increase Your Chances Of Winning
+        </p>
         <h3 className="text-xl mt-4 text-gray-400">
           Select options to continue:
         </h3>
@@ -56,7 +83,7 @@ export function Bet() {
             </Card>
           </div>
           {/* Card 2 */}
-          <div className="mb-4">
+          <div className="mb-4 ">
             {/* Conteúdo do card 2 */}
             <Card className="bg-gray-800 hover:bg-gray-700 text-white flex flex-col text-center p-8 border-none mx-4 ">
               {/* Frase */}
@@ -122,7 +149,7 @@ export function Bet() {
                 Step 2 – Enter the value::{" "}
               </p>
               {/* Valor grande */}
-              <div className="flex-1 flex flex-col justify-center items-center mb-2">
+              <div className="flex-1 flex flex-col justify-center items-center">
                 <Input
                   type="number"
                   value={betValue}
@@ -132,8 +159,8 @@ export function Bet() {
                 />
               </div>
               {/* Potencial ganho */}
-              <p className="text-green-600 text-xl text-center mb-4">
-                Você pode ganhar: ${potentialWin}
+              <p className="text-gray-400 text-7xl font-bold text-center mb-6">
+                You can win: ${potentialWin}
               </p>
               {/* Campo de input */}
 
@@ -148,20 +175,27 @@ export function Bet() {
         </div>
       </div>
       {/* Novo Card abaixo dos cards existentes */}
-      <div className="container mx-auto px-4 p-6">
+
+      {/* ... */}
+      {/* Novo Card abaixo dos cards existentes */}
+      <div className="container px-4 p-4">
         <Card className="bg-gray-800 hover:bg-gray-700 text-white flex flex-col text-center p-8 border-none mx-auto">
-          <h3 className="text-white text-3xl font-bold mb-2">Bet summary</h3>
+          <h3 className="text-white text-3xl font-bold mb-2">Bet Summary</h3>
           <div className="text-left">
-            <p className="text-gray-400 text-lg">Type of bets: Option 1</p>
-            <p className="text-gray-400 text-lg">Date bet: 2024-05-19</p>
+            <p className="text-gray-400 text-lg">Bet type: {getTypeOfBet()} </p>
             <p className="text-gray-400 text-lg">
-              Teams: Bayern vs Real Madrid
+              Bet date: {getCurrentDate()}
             </p>
-            <p className="text-gray-400 text-lg">Values: $10</p>
-            <p className="text-gray-400 text-lg">Status: Pending</p>
+            <p className="text-gray-400 text-lg">Teams:</p>
+            <p className="text-gray-400 text-lg">Amount bet: {betValue}</p>
+            <p className="text-gray-400 text-lg">
+              Possible earnings: {potentialWin}
+            </p>
+            <p className="text-gray-400 text-lg">Status:</p>
           </div>
         </Card>
       </div>
+
       {/* Adicionando um novo card abaixo do resumo da aposta */}
       <div className="container mx-auto px-4 p-6">
         <Card className="bg-gray-800 hover:bg-gray-700 text-white flex flex-col text-center p-8 border-none mx-auto">

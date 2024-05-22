@@ -32,7 +32,7 @@ export function Games() {
   };
 
   return (
-    <div className="h-screen bg-black container mx-auto px-4">
+    <div className="bg-black container mx-auto px-4">
       {!mostrarAposta && (
         <div className="text-center">
           <h2 className="text-4xl font-bold text-gray-400">Featured Game</h2>
@@ -42,7 +42,7 @@ export function Games() {
           <h3 className=" text-xl mt-4 mb-6 text-gray-400">
             Choose your team to bet on:{" "}
           </h3>
-          <div className="md:flex md:flex-wrap md:justify-center">
+          <div className="h-screen md:flex md:flex-wrap md:justify-center">
             {/* Coluna da esquerda */}
             <div className="md:w-1/3">
               {[1, 2].map((index) => (
