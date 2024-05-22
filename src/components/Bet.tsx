@@ -1,10 +1,35 @@
+import React, { useState } from "react";
 import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { CircleArrowLeft } from "lucide-react";
 import Real from "../assets/real.svg";
 import Bayern from "../assets/bayern.svg";
 
 export function Bet() {
+  const [betValue, setBetValue] = useState<number>(0); // Definindo o tipo como number
+  const [selectedOdds, setSelectedOdds] = useState<number>(1); // Valor padrão das odds
+  const [potentialWin, setPotentialWin] = useState<number>(0); // Definindo o tipo como number
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseFloat(event.target.value); // Convertendo o valor para número
+    setBetValue(value); // Atualiza o valor da aposta
+
+    // Calcula o potencial de ganho somente se as odds forem selecionadas
+    if (selectedOdds !== 1) {
+      const potentialWin = selectedOdds * value; // Calcula o potencial de ganho com base nas odds e no valor da aposta
+      setPotentialWin(potentialWin.toFixed(2)); // Define o potencial de ganho
+    }
+  };
+
+  const handleOddsSelect = (odds: number) => {
+    setSelectedOdds(odds); // Atualiza as odds selecionadas
+
+    // Calcula o potencial de ganho somente se o valor da aposta for definido
+    if (betValue !== 0) {
+      const potentialWin = odds * betValue; // Calcula o potencial de ganho com base nas odds e no valor da aposta
+      setPotentialWin(potentialWin.toFixed(2)); // Define o potencial de ganho
+    }
+  };
   return (
     <div className="container mx-auto px-4 ">
       <div className="text-white text-center p-8">
@@ -35,34 +60,47 @@ export function Bet() {
             {/* Conteúdo do card 2 */}
             <Card className="bg-gray-800 hover:bg-gray-700 text-white flex flex-col text-center p-8 border-none mx-4 ">
               {/* Frase */}
-              <p className="text-white text-xl mb-4 ">Place your bet!</p>
+              <p className="text-white text-3xl font-bold mb-4 ">
+                Step 1 - Select the type:
+              </p>
 
               {/* Botões */}
               <div className="mb-4 flex justify-between">
                 <div className="mr-2">
-                  <button className="bg-green-600 hover:bg-green-700 text-black font-bold py-2 px-4 rounded-2xl mb-2">
+                  <Button
+                    className="bg-green-600 hover:bg-green-700 text-black font-bold py-2 px-4 rounded-2xl mb-2"
+                    onClick={() => handleOddsSelect(4.5)}
+                  >
                     4.50
-                  </button>
+                  </Button>
                   {/* Informações abaixo do botão 1 */}
                   <div className="text-gray-500">
                     <p>Bayern</p>
                   </div>
                 </div>
 
+                {/* Botão para selecionar odds */}
                 <div className="mr-2">
-                  <button className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-2xl mb-2">
+                  <Button
+                    className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-2xl mb-2"
+                    onClick={() => handleOddsSelect(1.34)}
+                  >
                     1.34
-                  </button>
+                  </Button>
                   {/* Informações abaixo do botão 2 */}
                   <div className="text-gray-500">
                     <p>Draw</p>
                   </div>
                 </div>
 
+                {/* Botão para selecionar odds */}
                 <div>
-                  <button className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-2xl mb-2">
+                  <Button
+                    className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-2xl mb-2"
+                    onClick={() => handleOddsSelect(8.75)}
+                  >
                     8.75
-                  </button>
+                  </Button>
                   {/* Informações abaixo do botão 3 */}
                   <div className="text-gray-500">
                     <p>Real Madrid</p>
@@ -81,18 +119,26 @@ export function Bet() {
             <Card className="bg-gray-800 hover:bg-gray-700 text-white flex flex-col text-center p-8 border-none mx-4 h-full">
               {/* Frase inicial */}
               <p className="text-white text-3xl font-bold  mb-2">
-                You are betting:{" "}
+                Step 2 – Enter the value::{" "}
               </p>
               {/* Valor grande */}
               <div className="flex-1 flex flex-col justify-center items-center mb-2">
-                <p className="text-9xl font-bold">$ 10</p>
+                <Input
+                  type="number"
+                  value={betValue}
+                  onChange={handleInputChange}
+                  className="bg-gray-900 text-white p-8 rounded-2xl border-none "
+                  placeholder="Enter the bet amount"
+                />
               </div>
-              {/* Frase abaixo do valor */}
+              {/* Potencial ganho */}
               <p className="text-green-600 text-xl text-center mb-4">
-                You can earn $45
+                Você pode ganhar: ${potentialWin}
               </p>
+              {/* Campo de input */}
+
               {/* Botão */}
-              <div className="mt-auto">
+              <div className="mt-4">
                 <button className="bg-green-600 hover:bg-green-700 text-black font-bold py-2 px-4 rounded-2xl w-full">
                   BET
                 </button>

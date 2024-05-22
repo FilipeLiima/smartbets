@@ -5,9 +5,6 @@ import Real from "../assets/real.svg";
 import Bayern from "../assets/bayern.svg";
 import { Bet } from "./Bet.tsx";
 
-const API_TOKEN = "a6e55ac0e5704e439442915ba5e0d07a";
-const BASE_URL = "https://api.football-data.org/v4";
-
 export function Games() {
   const [times, setTimes] = useState<any[]>([]);
   const [mostrarAposta, setMostrarAposta] = useState(false);
