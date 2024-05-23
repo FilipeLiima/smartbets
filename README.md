@@ -1,23 +1,18 @@
-### Tecnologias utilizadas:
+# SmartBets: A smart betting platform
+
+SmartBets is an online betting platform that offers a safe, transparent and decentralized experience for its users. Our platform allows users to bet on a variety of sporting events including football, basketball, tennis and more, all in a decentralized and transparent way.
+
+### Technologies used:
 
 ### Front end:
 
-- **React**: Biblioteca JavaScript para criar interfaces de usuário interativas e eficientes.
+- **React**: JavaScript library for creating efficient, interactive user interfaces.
 - **Vite**: Um bundler de front-end moderno e leve que fornece desenvolvimento a quente, recarregamento de servidor zero e outras funcionalidades para melhorar a experiência do desenvolvedor.
-- **Typescript**: Uma superconjunto do JavaScript que adiciona tipagem estática para melhorar a confiabilidade e a legibilidade do código.
-- **TailwindCSS**: Uma biblioteca de CSS em primeiro lugar que fornece um conjunto de classes utilitárias para construir interfaces de usuário rapidamente e com estilo.
-- **Shadcn-UI**: Uma biblioteca de componentes React UI de código aberto que fornece uma ampla gama de componentes pré-construídos para acelerar o desenvolvimento.
+- **Typescript**: A superset of JavaScript that adds static typing to improve code reliability and readability.
+- **TailwindCSS**: A CSS-first library that provides a set of utility classes for quickly and stylishly building user interfaces.
+- **Shadcn-UI**: An open-source React UI component library that provides a wide range of pre-built components to speed up development.
 
-### Roadmap:
+### Smart Contracts: (wait)
 
-**Concluído**:
-
-- Login Page
-
-**Em desenvolvimento**:
-
-- Página swap, lista de campeonatos, apostas
-- Integrar conexão DATA FEEDS para consumir dados da api do coingecko e gerar lista de tokens e icones;
-- Integrar conexão DATA FEEDS para consumir dados da api externa para gerar resultados de campeonatos;
-- Desenvolver interface de apostas;
-- Melhorar logica de autenticação metamask para exibição de hash
+- **Solidity**: Solidity is a high-level programming language used to write smart contracts on blockchain platforms such as Ethereum.
+- **Hardhat**: Hardhat is a smart contract development framework that makes it easy to compile, deploy, and test smart contracts on blockchain platforms such as Ethereum.
