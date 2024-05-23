@@ -205,25 +205,30 @@ export function App() {
                 Features and Functionality{" "}
               </h2>
               <p className="text-gray-400 text-xl mb-2 mb-8 ">
-                Coin Swap: This functionality allows users to exchange one
-                cryptocurrency for another in a direct and simplified way,
-                providing liquidity and accessibility to the different digital
-                assets available on the market.
+                <span className="text-white font-bold">Coin Swap:</span> This
+                functionality allows users to exchange one cryptocurrency for
+                another in a direct and simplified way, providing liquidity and
+                accessibility to the different digital assets available on the
+                market.
               </p>
               <p className="text-gray-400 text-xl mb-2 mb-8">
-                Reward Exclusive NFTs: Refers to the distribution of exclusive
-                NFTs (Non-Fungible Tokens) as a reward for certain actions or
-                achievements within a platform or community. These NFTs often
-                represent unique digital items or collectibles, conferring
-                special status on holders.
+                <span className="text-white font-bold">
+                  Reward Exclusive NFTs:{" "}
+                </span>{" "}
+                Refers to the distribution of exclusive NFTs (Non-Fungible
+                Tokens) as a reward for certain actions or achievements within a
+                platform or community. These NFTs often represent unique digital
+                items or collectibles, conferring special status on holders.
               </p>
               <p className="text-gray-400 text-xl mb-2 mb-8">
-                Deflationary token: It is a type of cryptographic token whose
-                total supply decreases over time. This is generally achieved
-                through mechanisms built into the token, such as token burning
-                or transaction fees that are redistributed to existing holders.
-                This approach can help create scarcity and appreciation of the
-                token over time.
+                <span className="text-white font-bold">
+                  Deflationary token:{" "}
+                </span>
+                It is a type of cryptographic token whose total supply decreases
+                over time. This is generally achieved through mechanisms built
+                into the token, such as token burning or transaction fees that
+                are redistributed to existing holders. This approach can help
+                create scarcity and appreciation of the token over time.
               </p>
             </div>
           </div>
