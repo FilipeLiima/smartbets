@@ -22,7 +22,7 @@ export function Swap() {
         <div className=" text-gray-400 text-center">
           <h2 className="text-4xl font-bold">Swap Your Coin</h2>
 
-          <p className="text-green-400 mt-2 font-bold text-7xl">
+          <p className="text-green-400 mt-4 font-bold text-7xl">
             Conversion At Any Time
           </p>
           <h3 className="text-xl mt-4 text-gray-400">

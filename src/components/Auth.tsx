@@ -47,7 +47,6 @@ export function Auth() {
       {/* Título no topo direito */}
       <div className="absolute top-0 right-0 p-4">
         <h1>
-          <span className="text-gray-400  text-lg font-bold">Welcome,</span>{" "}
           <span className="text-green-600  text-lg font-bold">
             {userWalletId}
           </span>
