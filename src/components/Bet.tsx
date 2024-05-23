@@ -1,3 +1,4 @@
+// Importe de bibliotecas e componentes
 import React, { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -6,10 +7,11 @@ import Real from "../assets/real.svg";
 import Bayern from "../assets/bayern.svg";
 
 export function Bet() {
-  const [betValue, setBetValue] = useState<number>(0); // Definindo o tipo como number
+  // Definindo os estados iniciais
+  const [betValue, setBetValue] = useState<number>(0); // Valor da aposta
   const [selectedOdds, setSelectedOdds] = useState<number>(1); // Valor padrão das odds
-  const [potentialWin, setPotentialWin] = useState<number>(0); // Definindo o tipo como number
-
+  const [potentialWin, setPotentialWin] = useState<number>(0); // Potencial de ganho
+  // Função para lidar com a mudança de valor no input
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseFloat(event.target.value); // Convertendo o valor para número
     setBetValue(value); // Atualiza o valor da aposta
@@ -20,7 +22,7 @@ export function Bet() {
       setPotentialWin(potentialWin.toFixed(2)); // Define o potencial de ganho
     }
   };
-
+  // Função para selecionar as odds
   const handleOddsSelect = (odds: number) => {
     setSelectedOdds(odds); // Atualiza as odds selecionadas
 
@@ -30,6 +32,7 @@ export function Bet() {
       setPotentialWin(potentialWin.toFixed(2)); // Define o potencial de ganho
     }
   };
+  // Função para obter a data atual formatada
   const getCurrentDate = () => {
     const date = new Date();
     const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1)
@@ -37,6 +40,7 @@ export function Bet() {
       .padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
     return formattedDate;
   };
+  // Função para obter o tipo de aposta com base nas odds selecionadas
   const getTypeOfBet = () => {
     let typeOfBet = "";
     switch (selectedOdds) {
@@ -167,7 +171,7 @@ export function Bet() {
               {/* Botão */}
               <div className="mt-4">
                 <button className="bg-green-600 hover:bg-green-700 text-black font-bold py-2 px-4 rounded-2xl w-full">
-                  BET
+                  BET NOW
                 </button>
               </div>
             </Card>

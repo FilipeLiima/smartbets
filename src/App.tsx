@@ -1,3 +1,4 @@
+// Importe de bibliotecas e componentes
 import { ethers } from "ethers";
 import { Button } from "./components/ui/button";
 import { Wallet } from "lucide-react";
@@ -17,13 +18,15 @@ import VRF from "./assets/vrf.svg";
 import Solidity from "./assets/solidity.svg";
 
 export function App() {
+  // Função assíncrona para conectar ao MetaMask
   const connectToMetaMask = async () => {
     if (window.ethereum) {
       try {
+        // Solicita conexão com a carteira MetaMask
         await window.ethereum.request({ method: "eth_requestAccounts" });
         alert("Connected to MetaMask successfully!");
 
-        // Redireciona para a rota "/home" com o hash da carteira como parâmetro de rota
+        // Redireciona para a rota "/auth" após a conexão
         window.location.href = `/auth`;
       } catch (error) {
         console.error("Error connecting to MetaMask:", error);

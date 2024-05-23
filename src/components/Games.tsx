@@ -1,3 +1,4 @@
+// Importe de bibliotecas e componentes
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Card } from "@/components/ui/card";
@@ -6,29 +7,32 @@ import Bayern from "../assets/bayern.svg";
 import { Bet } from "./Bet.tsx";
 
 export function Games() {
+  // Define o estado para armazenar os times e o estado para mostrar a interface de aposta
   const [times, setTimes] = useState<any[]>([]);
   const [mostrarAposta, setMostrarAposta] = useState(false);
-
+  // useEffect para buscar os dados dos times na API quando o componente é montado
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Faz a requisição GET para obter os dados dos times
         const response = await axios.get(`${BASE_URL}/teams/`, {
           headers: {
             "X-Auth-Token": API_TOKEN,
           },
         });
-
+        // Atualiza o estado com os dados recebidos
         setTimes(response.data);
       } catch (error) {
+        // Loga um erro caso a requisição falhe
         console.error("Erro ao carregar dados:", error);
       }
     };
-
+    // Chama a função fetchData para buscar os dados
     fetchData();
-  }, []);
-
+  }, []); // O array vazio garante que o useEffect será executado apenas uma vez
+  // Função para lidar com o clique no botão de aposta
   const handleBetClick = () => {
-    setMostrarAposta(true);
+    setMostrarAposta(true); // Atualiza o estado para mostrar a interface de aposta
   };
 
   return (
