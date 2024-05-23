@@ -57,10 +57,7 @@ export function App() {
         style={{ width: "200px", height: "auto" }}
       />
 
-      <Button
-        className="text-xl absolute top-0 right-0 m-5 bg-black text-green-500 hover:bg-gray-800"
-        onClick={connectToMetaMask}
-      >
+      <Button className="text-xl absolute top-0 right-0 m-5 bg-black text-green-500 hover:bg-gray-800">
         How does it work?
       </Button>
 
