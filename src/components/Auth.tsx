@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Swap } from "./Swap.tsx";
 import { Games } from "./Games.tsx";
+import { Wallet } from "lucide-react";
 
 export function Auth() {
   // Estado para armazenar o ID da carteira do usuário
@@ -47,8 +48,9 @@ export function Auth() {
       {/* Título no topo direito */}
       <div className="absolute top-0 right-0 p-4">
         <h1>
-          <span className="text-green-600  text-lg font-bold">
-            {userWalletId}
+          <span className="text-gray-400  text-lg flex items-center font-bold ">
+            <Wallet className="mr-2" />
+            {userWalletId.slice(0, 6)}...{userWalletId.slice(-4)}
           </span>
         </h1>
       </div>

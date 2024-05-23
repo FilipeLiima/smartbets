@@ -15,7 +15,6 @@ import { Input } from "@/components/ui/input";
 import { ArrowRightLeft } from "lucide-react";
 import SwapIcon from "../assets/swap.svg";
 import { ChevronDown } from "lucide-react";
-import { UserRoundCheck } from "lucide-react";
 
 export function Swap() {
   const [tokens, setTokens] = useState([]);
@@ -77,7 +76,6 @@ export function Swap() {
         <Card className="bg-gray-900 border-none w-[650px] m-4 p-6">
           {/* Card 1 */}
           <Button className="bg-gray-500 hover:bg-gray-600 text-lg text-black font-bold py-2 px-4 rounded-2xl mb-4 flex items-center">
-            <UserRoundCheck className="mr-2 h-5 w-5 text-black" />
             {"Connected wallet"}
           </Button>
           <h2 className="text-white font-bold mb-4 text-3xl">
