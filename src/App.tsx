@@ -1,5 +1,6 @@
 // Importe de bibliotecas e componentes
 import { ethers } from "ethers";
+import React, { useState } from "react";
 import { Button } from "./components/ui/button";
 import { Wallet } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -16,6 +17,7 @@ import Automation from "./assets/automation.svg";
 import CCIP from "./assets/ccip.svg";
 import VRF from "./assets/vrf.svg";
 import Solidity from "./assets/solidity.svg";
+export let userWalletId = null;
 
 export function App() {
   // Função assíncrona para conectar ao MetaMask
@@ -23,16 +25,26 @@ export function App() {
     if (window.ethereum) {
       try {
         // Solicita conexão com a carteira MetaMask
-        await window.ethereum.request({ method: "eth_requestAccounts" });
-        alert("Connected to MetaMask successfully!");
+        const accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
 
-        // Redireciona para a rota "/auth" após a conexão
-        window.location.href = `/auth`;
+        // Verifica se há contas conectadas
+        if (accounts.length > 0) {
+          // A primeira conta geralmente é a conta principal do usuário
+          const userWalletId = accounts[0];
+          console.log("ID da carteira do usuário:", userWalletId);
+
+          // Redireciona para a rota "/auth" após a conexão
+          window.location.href = `/auth?walletId=${userWalletId}`;
+        } else {
+          alert("Nenhuma conta encontrada na carteira MetaMask.");
+        }
       } catch (error) {
-        console.error("Error connecting to MetaMask:", error);
+        console.error("Erro ao conectar-se ao MetaMask:", error);
       }
     } else {
-      alert("Please install MetaMask to connect.");
+      alert("Por favor, instale o MetaMask para se conectar.");
     }
   };
 
