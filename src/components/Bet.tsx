@@ -196,6 +196,7 @@ export function Bet() {
               Possible earnings: {potentialWin}
             </p>
             <p className="text-gray-400 text-lg">Status:</p>
+            <p className="text-gray-400 text-lg">Bônus NFT:</p>
           </div>
         </Card>
       </div>
