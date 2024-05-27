@@ -48,9 +48,15 @@ export function Auth() {
       {/* Título no topo direito */}
       <div className="absolute top-0 right-0 p-4">
         <h1>
-          <span className="text-gray-400  text-lg flex items-center font-bold ">
+          <span className="text-gray-400 text-lg flex items-center font-bold">
             <Wallet className="mr-2" />
-            {userWalletId.slice(0, 6)}...{userWalletId.slice(-4)}
+            {userWalletId ? (
+              <>
+                {userWalletId.slice(0, 6)}...{userWalletId.slice(-4)}
+              </>
+            ) : (
+              "ID indisponível"
+            )}
           </span>
         </h1>
       </div>
