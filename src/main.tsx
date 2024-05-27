@@ -5,6 +5,7 @@ import { App } from "./App.tsx";
 import { Auth } from "./components/Auth.tsx";
 import { Games } from "./components/Games.tsx";
 import { Bet } from "./components/Bet.tsx";
+import { Box } from "./components/Box.tsx";
 import "./global.css";
 
 ReactDOM.render(
@@ -15,6 +16,7 @@ ReactDOM.render(
         <Route path="/auth" element={<Auth />} />{" "}
         <Route path="/games" element={<Games />} />
         <Route path="/bet" element={<Bet />} />
+        <Route path="/box" element={<Box />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

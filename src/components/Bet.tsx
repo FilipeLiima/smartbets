@@ -5,12 +5,25 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Real from "../assets/real.svg";
 import Bayern from "../assets/bayern.svg";
+import { Box } from "./Box.tsx";
 
 export function Bet() {
   // Definindo os estados iniciais
+
   const [betValue, setBetValue] = useState<number>(0); // Valor da aposta
   const [selectedOdds, setSelectedOdds] = useState<number>(1); // Valor padrão das odds
   const [potentialWin, setPotentialWin] = useState<number>(0); // Potencial de ganho
+  const [redirectToBox, setRedirectToBox] = useState<boolean>(false); // Estado para controlar o redirecionamento
+
+  /// Função para redirecionar para a rota especificada
+  const redirectToBoxComponent = () => {
+    setRedirectToBox(true); // Define o estado para redirecionar para verdadeiro
+  };
+  // Verifique se o estado redirectToBox é verdadeiro e renderize o componente Box se for
+  if (redirectToBox) {
+    return <Box />;
+  }
+
   // Função para lidar com a mudança de valor no input
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseFloat(event.target.value); // Convertendo o valor para número
@@ -113,7 +126,7 @@ export function Bet() {
                 {/* Botão para selecionar odds */}
                 <div className="mr-2">
                   <Button
-                    className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-2xl mb-2"
+                    className="bg-green-600 hover:bg-green-700 text-black font-bold py-2 px-4 rounded-2xl mb-2"
                     onClick={() => handleOddsSelect(1.34)}
                   >
                     1.34
@@ -127,7 +140,7 @@ export function Bet() {
                 {/* Botão para selecionar odds */}
                 <div>
                   <Button
-                    className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-2xl mb-2"
+                    className="bg-green-600 hover:bg-green-700 text-black font-bold py-2 px-4 rounded-2xl mb-2"
                     onClick={() => handleOddsSelect(8.75)}
                   >
                     8.75
@@ -170,7 +183,7 @@ export function Bet() {
 
               {/* Botão */}
               <div className="mt-4">
-                <button className="bg-green-600 hover:bg-green-700 text-black font-bold py-2 px-4 rounded-2xl w-full">
+                <button className="bg-green-600 hover:bg-green-700 border-white text-black font-bold py-2 px-4 rounded-2xl w-full">
                   BET NOW
                 </button>
               </div>
@@ -196,8 +209,15 @@ export function Bet() {
               Possible earnings: {potentialWin}
             </p>
             <p className="text-gray-400 text-lg">Status:</p>
-            <p className="text-gray-400 text-lg">History:</p>
-            <p className="text-gray-400 text-lg">Bônus NFT:</p>
+            <p className="text-gray-400 text-lg">
+              Special Bônus:{" "}
+              <Button
+                className="bg-green-600 hover:bg-green-700 text-lg text-black font-bold ml-4 rounded-2xl"
+                onClick={() => redirectToBoxComponent()}
+              >
+                Verify
+              </Button>
+            </p>
           </div>
         </Card>
       </div>
@@ -212,7 +232,7 @@ export function Bet() {
               <iframe
                 id="sofa-standings-embed-83-58766"
                 src="https://widgets.sofascore.com/pt-BR/embed/tournament/83/season/58766/standings/Brasileiro%20Serie%20A?widgetTitle=Brasileiro%20Serie%20A&showCompetitionLogo=true&v=2"
-                style={{ height: "1031px", maxWidth: "568px", width: "100%" }}
+                style={{ height: "1031px", maxWidth: "100%", width: "100%" }}
                 frameBorder="0"
                 scrolling="no"
               ></iframe>
