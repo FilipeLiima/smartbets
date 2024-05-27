@@ -106,7 +106,7 @@ export function App() {
           <div className=" grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 p-8 mb-8">
             {/* Card 1 - Área 1 */}
             <div className="col-span-1 relative ">
-              <div className="bg-gray-800 hover:bg-gray-700 text-white flex flex-col text-center p-16 border-none relative">
+              <div className="bg-gray-900 hover:bg-gray-800 text-white flex flex-col text-center p-16 border-none relative">
                 <div className="absolute top-0 left-0 right-0 flex items-center justify-center mt-4">
                   <Bird className="text-white w-8 h-8" />
                 </div>
@@ -119,7 +119,7 @@ export function App() {
             </div>
             {/* Card 2 - Área 2 */}
             <div className="col-span-1 relative">
-              <div className="bg-gray-800 hover:bg-gray-700 text-white flex flex-col text-center p-16 border-none relative">
+              <div className="bg-gray-900 hover:bg-gray-800 text-white flex flex-col text-center p-16 border-none relative">
                 <div className="absolute top-0 left-0 right-0 flex items-center justify-center mt-4">
                   <Blend className="text-white w-8 h-8" />
                 </div>
@@ -135,7 +135,7 @@ export function App() {
 
             {/* Card 3 - Área 3 */}
             <div className="col-span-1 relative">
-              <div className="bg-gray-800 hover:bg-gray-700 text-white flex flex-col text-center p-16 border-none relative">
+              <div className="bg-gray-900 hover:bg-gray-800 text-white flex flex-col text-center p-16 border-none relative">
                 <div className="absolute top-0 left-0 right-0 flex items-center justify-center mt-4">
                   <Fingerprint className="text-white w-8 h-8" />
                 </div>

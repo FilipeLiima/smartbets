@@ -85,9 +85,9 @@ export function Bet() {
       <div className="md:flex md:justify-between">
         {/* Coluna da esquerda */}
         <div className="md:w-1/3">
-          <div className="mb-4">
+          <div className="mb-4 ">
             {/* Card 1 */}
-            <Card className="bg-gray-800 hover:bg-gray-700 text-white flex flex-col text-center p-8 border-none mx-4">
+            <Card className="bg-gray-900 hover:bg-gray-800 text-white flex flex-col text-center p-8 border-none mx-4">
               <h3 className="text-white text-3xl font-bold mb-2">
                 Bayern vs Real Madrid
               </h3>
@@ -100,11 +100,11 @@ export function Bet() {
             </Card>
           </div>
           {/* Card 2 */}
-          <div className="mb-4 ">
+          <div>
             {/* Conteúdo do card 2 */}
-            <Card className="bg-gray-800 hover:bg-gray-700 text-white flex flex-col text-center p-8 border-none mx-4 ">
+            <Card className="bg-gray-900 hover:bg-gray-800 text-white flex flex-col text-center p-8 border-none mx-4 ">
               {/* Frase */}
-              <p className="text-white text-3xl font-bold mb-4 ">
+              <p className="text-white text-3xl font-bold mb-4">
                 Step 1 - Select the type:
               </p>
 
@@ -160,7 +160,7 @@ export function Bet() {
           {/* Card 3 */}
           <div className="mb-4 h-full flex flex-col justify-between">
             {/* Conteúdo do card 3 */}
-            <Card className="bg-gray-800 hover:bg-gray-700 text-white flex flex-col text-center p-8 border-none mx-4 h-full">
+            <Card className="bg-gray-900  text-white flex flex-col text-center p-8 border-none mx-4 h-full">
               {/* Frase inicial */}
               <p className="text-white text-3xl font-bold  mb-2">
                 Step 2 – Enter the value::{" "}
@@ -171,7 +171,7 @@ export function Bet() {
                   type="number"
                   value={betValue}
                   onChange={handleInputChange}
-                  className="bg-gray-900 text-white p-8 rounded-2xl border-none "
+                  className="bg-gray-800 hover:bg-gray-700 text-white p-8 rounded-2xl border-none "
                   placeholder="Enter the bet amount"
                 />
               </div>
@@ -196,7 +196,7 @@ export function Bet() {
       {/* ... */}
       {/* Novo Card abaixo dos cards existentes */}
       <div className="container px-4 p-4">
-        <Card className="bg-gray-800 hover:bg-gray-700 text-white flex flex-col text-center p-8 border-none mx-auto">
+        <Card className="bg-gray-900 hover:bg-gray-800 text-white flex flex-col text-center p-8 mt-2 border-none mx-auto">
           <h3 className="text-white text-3xl font-bold mb-2">Bet Summary</h3>
           <div className="text-left">
             <p className="text-gray-400 text-lg">Bet type: {getTypeOfBet()} </p>
@@ -223,7 +223,7 @@ export function Bet() {
       </div>
       {/* Adicionando um novo card abaixo do resumo da aposta */}
       <div className="container mx-auto px-4 p-2">
-        <Card className="bg-gray-800 hover:bg-gray-700 text-white flex flex-col text-center p-8 border-none mx-auto">
+        <Card className="bg-gray-900 hover:bg-gray-800 text-white flex flex-col text-center p-8 border-none mx-auto">
           <h3 className="text-white text-3xl p-4 font-bold mb-4">
             Real-Time Statistics
           </h3>
