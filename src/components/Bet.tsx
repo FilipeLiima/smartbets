@@ -1,6 +1,5 @@
 // Importe de bibliotecas e componentes
-import React, { useState } from "react";
-import Chart from "chart.js/auto";
+import React, { useState, useEffect, useRef } from "react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -258,7 +257,7 @@ export function Bet() {
 
               {/* Botão */}
               <div className="mt-4">
-                <button className="bg-green-600 hover:bg-green-700 border-white text-black font-bold py-2 px-4 rounded-2xl w-full">
+                <button className="bg-green-600 hover:bg-green-700 TEXT border-white text-black font-bold py-2 px-4 rounded-2xl w-full">
                   BET NOW
                 </button>
               </div>
@@ -268,7 +267,7 @@ export function Bet() {
       </div>
       <div>
         {/* Botões para selecionar o card */}
-        <div className="container px-4 p-4">
+        <div className="container px-4 p-4 mt-6">
           <Button
             className="bg-black hover:bg-black text-2xl border-none text-white font-bold py-2 px-4"
             onClick={() => handleButtonClick("summary")}
