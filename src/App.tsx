@@ -1,5 +1,4 @@
 // Importe de bibliotecas e componentes
-
 import { Button } from "./components/ui/button";
 import { Wallet } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";

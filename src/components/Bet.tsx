@@ -1,5 +1,6 @@
 // Importe de bibliotecas e componentes
 import React, { useState } from "react";
+import { ArrowUpRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -94,10 +95,10 @@ export function Bet() {
                 Main Bet Information:
               </h2>
               <p className="text-gray-400 text-lg">
-                <span className="text-white">Bet type:</span> {getTypeOfBet()}{" "}
+                <span className="text-white">Bet Type:</span> {getTypeOfBet()}{" "}
               </p>
               <p className="text-gray-400 text-lg">
-                <span className="text-white">Bet date:</span> {getCurrentDate()}
+                <span className="text-white">Bet Date:</span> {getCurrentDate()}
               </p>
               <p className="text-gray-400 text-lg">
                 <span className="text-white">Teams:</span>
@@ -106,14 +107,21 @@ export function Bet() {
                 <span className="text-white">Stadium:</span>
               </p>
               <p className="text-gray-400 text-lg">
-                <span className="text-white">Amount bet:</span> {betValue}
+                <span className="text-white">Amount Bet:</span> {betValue}
               </p>
               <p className="text-gray-400 text-lg">
-                <span className="text-white">Possible earnings:</span>{" "}
+                <span className="text-white">Possible Earnings:</span>{" "}
                 {potentialWin}
               </p>
               <p className="text-gray-400 text-lg">
-                <span className="text-white">Status:</span>
+                <span className="text-white">Current Status:</span>
+              </p>
+              <p className="text-gray-400 text-lg flex items-center">
+                <span className="text-white mr-2">Betting History:</span>
+                <Button className="text-gray-400 text-lg bg-gray-800 hover:bg-gray-700 rounded-2xl flex items-center">
+                  Access
+                  <ArrowUpRight className="w-5 h-5 ml-2 text-gray-400" />
+                </Button>
               </p>
             </div>
           </Card>
