@@ -99,18 +99,20 @@ export function App() {
 
       {/* Cards */}
       <div className="bg-black">
-        <div className="bg-black border-none max-w-[1400px] mx-auto">
-          <h2 className=" text-white  text-7xl text-center font-bold p-8">
+        <div className="bg-black border-none max-w-[1400px] mx-auto px-4 md:px-0">
+          <h2 className=" text-white text-4xl md:text-7xl text-center font-bold p-8">
             Our values
           </h2>
           <div className=" grid grid-cols-1 md:grid-cols-3 gap-4 p-8 mb-8">
             {/* Card 1 - Área 1 */}
             <div className="col-span-1 relative ">
-              <div className="bg-gray-900 hover:bg-gray-800 text-white flex flex-col text-center p-16 border-none relative">
+              <div className="bg-gray-900 hover:bg-gray-800 text-white flex flex-col text-center p-8 md:p-16 border-none relative">
                 <div className="absolute top-0 left-0 right-0 flex items-center justify-center mt-4">
                   <Bird className="text-white w-8 h-8" />
                 </div>
-                <h3 className="text-white text-3xl font-bold mb-2">Freedom</h3>
+                <h3 className="text-white text-xl md:text-3xl font-bold mb-2">
+                  Freedom
+                </h3>
                 <p className="text-gray-400 text-lg">
                   Bet without restrictions, with complete autonomy and
                   transparency in all your betting choices within the platform
@@ -123,7 +125,7 @@ export function App() {
                 <div className="absolute top-0 left-0 right-0 flex items-center justify-center mt-4">
                   <Blend className="text-white w-8 h-8" />
                 </div>
-                <h3 className="text-white text-3xl font-bold mb-2">
+                <h3 className="text-white text-xl md:text-3xl font-bold mb-2">
                   Transparency
                 </h3>
                 <p className="text-gray-400 text-lg">
@@ -139,7 +141,9 @@ export function App() {
                 <div className="absolute top-0 left-0 right-0 flex items-center justify-center mt-4">
                   <Fingerprint className="text-white w-8 h-8" />
                 </div>
-                <h3 className="text-white text-3xl font-bold mb-2">Security</h3>
+                <h3 className="text-white text-xl md:text-3xl font-bold mb-2">
+                  Security
+                </h3>
                 <p className="text-gray-400 text-lg">
                   Your personal and financial information while enjoying a
                   reliable betting platform that is protected.
@@ -149,11 +153,11 @@ export function App() {
           </div>
           <Card className="bg-black max-w-[1400px] border-none ">
             <div>
-              <h2 className=" text-white text-7xl text-center font-bold p-8">
+              <h2 className=" text-white text-4xl md:text-7xl text-center font-bold p-8">
                 Built with
               </h2>
             </div>
-            <div className="grid grid-cols-4 gap-4 p-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-8">
               {/* Primeira Linha */}
               <div className="col-span-6 md:col-span-1">
                 <img src={Chainlink} alt="Chainlin" />
@@ -185,10 +189,10 @@ export function App() {
       </div>
 
       {/* Foto */}
-      <div className="bg-black flex justify-center p-20">
-        <div className="mx-auto max-w-[1400px] flex w-full">
+      <div className="bg-black flex justify-center p-8 md:p-20">
+        <div className="max-w-[1400px] flex flex-col md:flex-row w-full">
           {/* Coluna da Esquerda */}
-          <div className="w-1/2 relative">
+          <div className="w-full md:w-1/2 relative mb-8 md:mb-0">
             <Card className="bg-black border-none">
               <CardContent>
                 <img src={Bola} alt="Imagem" className="w-full" />
@@ -196,19 +200,19 @@ export function App() {
             </Card>
           </div>
           {/* Coluna da Direita */}
-          <div className="w-1/2 flex justify-center items-center">
+          <div className="w-full md:w-1/2 flex justify-center items-center px-4 md:px-0">
             <div className="text-white">
-              <h2 className="text-4xl font-bold mb-8">
+              <h2 className="text-2xl md:text-4xl font-bold mb-8">
                 Features and Functionality{" "}
               </h2>
-              <p className="text-gray-400 text-xl mb-8 ">
+              <p className="text-gray-400 text-lg md:text-xl mb-8 ">
                 <span className="text-white font-bold">Coin Swap:</span> This
                 functionality allows users to exchange one cryptocurrency for
                 another in a direct and simplified way, providing liquidity and
                 accessibility to the different digital assets available on the
                 market.
               </p>
-              <p className="text-gray-400 text-xl mb-8">
+              <p className="text-gray-400 text-lg md:text-xl mb-8">
                 <span className="text-white font-bold">
                   Reward Exclusive NFTs:{" "}
                 </span>{" "}
@@ -217,7 +221,7 @@ export function App() {
                 platform or community. These NFTs often represent unique digital
                 items or collectibles, conferring special status on holders.
               </p>
-              <p className="text-gray-400 text-xl mb-8">
+              <p className="text-gray-400 text-lg md:text-xl mb-8">
                 <span className="text-white font-bold">
                   Deflationary token:{" "}
                 </span>
