@@ -62,33 +62,33 @@ export function App() {
       </Button>
 
       {/* Conteúdo */}
-      <div className="bg-black flex flex-col items-center ">
-        <Card className="bg-black p-6 border-none relative mt-16">
+      <div className="bg-black flex flex-col items-center px-4 md:px-0">
+        <Card className="bg-black p-6 border-none relative mt-16 w-full md:w-auto">
           <div className="w-auto">
-            <h1 className="text-7xl font-Inter text-white font-bold mb-6">
+            <h1 className="text-4xl md:text-7xl font-Inter text-white font-bold mb-6">
               <span className="block">Your safe bet,</span>
               <span className="block">transparent and</span>
               <span className="block">decentralized.</span>
             </h1>
-            <h2 className="text-white text-3xl mb-6">
+            <h2 className="text-white text-xl md:text-3xl mb-6">
               Bet on Brazilian championship football games in a decentralized
               way.
             </h2>
           </div>
           <div className="flex justify-start">
             <Button
-              className="text-3x1 p-5 m-5 bg-green-500 hover:bg-green-400 text-black font-bold"
+              className="text-xl md:text-3x1 p-3 md:p-5 m-5 bg-green-500 hover:bg-green-400 text-black font-bold"
               onClick={connectToMetaMask}
             >
-              <Wallet className="w-7 h-7 mr-2" />
+              <Wallet className="w-5 h-5 md:w-7 md:h-7 mr-2" />
               Launch APP
             </Button>
           </div>
         </Card>
       </div>
 
-      <div className="bg-black flex justify-center mt-8">
-        <div className="mx-auto">
+      <div className="bg-black flex justify-center mt-8 px-4 md:px-0">
+        <div className="w-full md:w-auto">
           <Card className="bg-black border-none">
             <CardContent>
               <img src={Blockchain} alt="Imagem" className="w-full" />
