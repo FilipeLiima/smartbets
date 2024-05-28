@@ -1,5 +1,6 @@
 // Importe de bibliotecas e componentes
 import React, { useState } from "react";
+import Chart from "chart.js/auto";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -14,6 +15,7 @@ export function Bet() {
   const [selectedOdds, setSelectedOdds] = useState<number>(1); // Valor padrão das odds
   const [potentialWin, setPotentialWin] = useState<number>(0); // Potencial de ganho
   const [redirectToBox, setRedirectToBox] = useState<boolean>(false); // Estado para controlar o redirecionamento
+  const [selectedCard, setSelectedCard] = useState("summary"); // Estado para controlar qual card deve ser exibido
 
   /// Função para redirecionar para a rota especificada
   const redirectToBoxComponent = () => {
@@ -71,6 +73,79 @@ export function Bet() {
     }
     return typeOfBet;
   };
+
+  // Função para lidar com o clique nos botões de SUMMARY e BONUS
+  const handleButtonClick = (cardType) => {
+    setSelectedCard(cardType); // Atualiza o estado para o tipo de card clicado
+  };
+
+  // Renderização condicional dos cards com base no estado selectedCard
+  const renderSelectedCard = () => {
+    if (selectedCard === "summary") {
+      return (
+        <div className="container px-4">
+          <Card
+            id="summary"
+            className="bg-gray-900  text-white flex flex-col text-center p-8 border-none mx-auto"
+          >
+            <div className="text-left">
+              <h2 className="text-white text-center justify-center font-bold text-3xl mb-2">
+                {" "}
+                Main Bet Information:
+              </h2>
+              <p className="text-gray-400 text-lg">
+                <span className="text-white">Bet type:</span> {getTypeOfBet()}{" "}
+              </p>
+              <p className="text-gray-400 text-lg">
+                <span className="text-white">Bet date:</span> {getCurrentDate()}
+              </p>
+              <p className="text-gray-400 text-lg">
+                <span className="text-white">Teams:</span>
+              </p>
+              <p className="text-gray-400 text-lg">
+                <span className="text-white">Amount bet:</span> {betValue}
+              </p>
+              <p className="text-gray-400 text-lg">
+                <span className="text-white">Possible earnings:</span>{" "}
+                {potentialWin}
+              </p>
+              <p className="text-gray-400 text-lg">
+                <span className="text-white">Status:</span>
+              </p>
+            </div>
+          </Card>
+        </div>
+      );
+    } else if (selectedCard === "bonus") {
+      return (
+        <div className="container px-4">
+          <Card
+            id="bonus"
+            className="bg-gray-900 hover:bg-gray-800 text-white flex flex-col text-center p-8 border-none mx-auto"
+          >
+            <div className="text-left">
+              <h2 className="text-white text-center justify-center font-bold text-3xl mb-2">
+                {" "}
+                Main Reward Information
+              </h2>
+              <p className="text-gray-400 text-lg mb-4">
+                Dear user, in this field you can check if you are eligible to
+                receive exclusive items from a draw on our platform. Just select
+                the option below to check.
+              </p>
+              <Button
+                className="bg-green-600 hover:bg-green-700 text-lg text-black  font-bold rounded-2xl mt-4"
+                onClick={() => redirectToBoxComponent()}
+              >
+                Verify
+              </Button>
+            </div>
+          </Card>
+        </div>
+      );
+    }
+  };
+
   return (
     <div className="container mx-auto px-4 ">
       <div className="text-white text-center p-8">
@@ -87,7 +162,7 @@ export function Bet() {
         <div className="md:w-1/3">
           <div className="mb-4 ">
             {/* Card 1 */}
-            <Card className="bg-gray-900 hover:bg-gray-800 text-white flex flex-col text-center p-8 border-none mx-4">
+            <Card className="bg-gray-900  text-white flex flex-col text-center p-8 border-none mx-4">
               <h3 className="text-white text-3xl font-bold mb-2">
                 Bayern vs Real Madrid
               </h3>
@@ -102,7 +177,7 @@ export function Bet() {
           {/* Card 2 */}
           <div>
             {/* Conteúdo do card 2 */}
-            <Card className="bg-gray-900 hover:bg-gray-800 text-white flex flex-col text-center p-8 border-none mx-4 ">
+            <Card className="bg-gray-900  text-white flex flex-col text-center p-8 border-none mx-4 ">
               {/* Frase */}
               <p className="text-white text-3xl font-bold mb-4">
                 Step 1 - Select the type:
@@ -112,7 +187,7 @@ export function Bet() {
               <div className="mb-4 flex justify-between">
                 <div className="mr-2">
                   <Button
-                    className="bg-green-600 hover:bg-green-700 text-black font-bold py-2 px-4 rounded-2xl mb-2"
+                    className="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-2xl mb-2"
                     onClick={() => handleOddsSelect(4.5)}
                   >
                     4.50
@@ -126,7 +201,7 @@ export function Bet() {
                 {/* Botão para selecionar odds */}
                 <div className="mr-2">
                   <Button
-                    className="bg-green-600 hover:bg-green-700 text-black font-bold py-2 px-4 rounded-2xl mb-2"
+                    className="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-2xl mb-2"
                     onClick={() => handleOddsSelect(1.34)}
                   >
                     1.34
@@ -140,7 +215,7 @@ export function Bet() {
                 {/* Botão para selecionar odds */}
                 <div>
                   <Button
-                    className="bg-green-600 hover:bg-green-700 text-black font-bold py-2 px-4 rounded-2xl mb-2"
+                    className="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-2xl mb-2"
                     onClick={() => handleOddsSelect(8.75)}
                   >
                     8.75
@@ -191,39 +266,30 @@ export function Bet() {
           </div>
         </div>
       </div>
-      {/* Novo Card abaixo dos cards existentes */}
+      <div>
+        {/* Botões para selecionar o card */}
+        <div className="container px-4 p-4">
+          <Button
+            className="bg-black hover:bg-black text-2xl border-none text-white font-bold py-2 px-4"
+            onClick={() => handleButtonClick("summary")}
+          >
+            SUMMARY
+          </Button>
+          <Button
+            className="bg-black hover:bg-black text-2xl border-none text-white font-bold py-2 px-4 ml-4"
+            onClick={() => handleButtonClick("bonus")}
+          >
+            BONUS
+          </Button>
+        </div>
 
-      {/* ... */}
-      {/* Novo Card abaixo dos cards existentes */}
-      <div className="container px-4 p-4">
-        <Card className="bg-gray-900 hover:bg-gray-800 text-white flex flex-col text-center p-8 mt-2 border-none mx-auto">
-          <h3 className="text-white text-3xl font-bold mb-2">Bet Summary</h3>
-          <div className="text-left">
-            <p className="text-gray-400 text-lg">Bet type: {getTypeOfBet()} </p>
-            <p className="text-gray-400 text-lg">
-              Bet date: {getCurrentDate()}
-            </p>
-            <p className="text-gray-400 text-lg">Teams:</p>
-            <p className="text-gray-400 text-lg">Amount bet: {betValue}</p>
-            <p className="text-gray-400 text-lg">
-              Possible earnings: {potentialWin}
-            </p>
-            <p className="text-gray-400 text-lg">Status:</p>
-            <p className="text-gray-400 text-lg">
-              Special Bônus:{" "}
-              <Button
-                className="bg-green-600 hover:bg-green-700 text-lg text-black font-bold ml-4 rounded-2xl"
-                onClick={() => redirectToBoxComponent()}
-              >
-                Verify
-              </Button>
-            </p>
-          </div>
-        </Card>
+        {/* Renderização condicional do card selecionado */}
+        {renderSelectedCard()}
       </div>
+
       {/* Adicionando um novo card abaixo do resumo da aposta */}
-      <div className="container mx-auto px-4 p-2">
-        <Card className="bg-gray-900 hover:bg-gray-800 text-white flex flex-col text-center p-8 border-none mx-auto">
+      <div className="container mx-auto px-4 p-2 mt-4">
+        <Card className="bg-gray-900  text-white flex flex-col text-center p-8 border-none mx-auto">
           <h3 className="text-white text-3xl p-4 font-bold mb-4">
             Real-Time Statistics
           </h3>
