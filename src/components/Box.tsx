@@ -5,14 +5,12 @@ import { Button } from "@/components/ui/button";
 
 export function Box() {
   const [rewardClaimed, setRewardClaimed] = useState(false);
-  const [winner, setWinner] = useState(false);
+
   const [showCard, setShowCard] = useState(true);
 
   const handleClaimReward = () => {
     // Lógica para verificar se o cliente é premiado
     const isWinner = Math.random() < 0.5; // Exemplo de lógica de premiação aleatória
-
-    setWinner(isWinner);
 
     if (isWinner) {
       setRewardClaimed(true); // Define que o cliente é premiado
