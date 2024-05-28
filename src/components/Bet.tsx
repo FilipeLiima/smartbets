@@ -103,6 +103,9 @@ export function Bet() {
                 <span className="text-white">Teams:</span>
               </p>
               <p className="text-gray-400 text-lg">
+                <span className="text-white">Stadium:</span>
+              </p>
+              <p className="text-gray-400 text-lg">
                 <span className="text-white">Amount bet:</span> {betValue}
               </p>
               <p className="text-gray-400 text-lg">
