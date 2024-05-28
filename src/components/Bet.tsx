@@ -28,22 +28,23 @@ export function Bet() {
   // Função para lidar com a mudança de valor no input
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseFloat(event.target.value); // Convertendo o valor para número
+
     setBetValue(value); // Atualiza o valor da aposta
 
     // Calcula o potencial de ganho somente se as odds forem selecionadas
     if (selectedOdds !== 1) {
       const potentialWin = selectedOdds * value; // Calcula o potencial de ganho com base nas odds e no valor da aposta
-      setPotentialWin(potentialWin.toFixed(2)); // Define o potencial de ganho
+      setPotentialWin(parseFloat(potentialWin.toFixed(2))); // Define o potencial de ganho
     }
   };
   // Função para selecionar as odds
   const handleOddsSelect = (odds: number) => {
     setSelectedOdds(odds); // Atualiza as odds selecionadas
 
-    // Calcula o potencial de ganho somente se o valor da aposta for definido
-    if (betValue !== 0) {
-      const potentialWin = odds * betValue; // Calcula o potencial de ganho com base nas odds e no valor da aposta
-      setPotentialWin(potentialWin.toFixed(2)); // Define o potencial de ganho
+    // Calcula o potencial de ganho somente se as odds forem selecionadas
+    if (selectedOdds !== 1) {
+      const potentialWin = selectedOdds * betValue; // Calcula o potencial de ganho com base nas odds e no valor da aposta
+      setPotentialWin(Number(potentialWin.toFixed(2))); // Define o potencial de ganho
     }
   };
   // Função para obter a data atual formatada
@@ -74,7 +75,7 @@ export function Bet() {
   };
 
   // Função para lidar com o clique nos botões de SUMMARY e BONUS
-  const handleButtonClick = (cardType) => {
+  const handleButtonClick = (cardType: string) => {
     setSelectedCard(cardType); // Atualiza o estado para o tipo de card clicado
   };
 

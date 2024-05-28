@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -10,7 +10,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { ArrowRightLeft } from "lucide-react";
 import SwapIcon from "../assets/swap.svg";
@@ -47,7 +46,7 @@ export function Swap() {
   );
 
   // Função para lidar com a seleção de um token da lista
-  const handleTokenSelectTop = (token) => {
+  const handleTokenSelectTop = (token: Token) => {
     setSelectedTokenTop(token);
     setIsModalTopOpen(false); // Fecha o modal ao selecionar um token
   };

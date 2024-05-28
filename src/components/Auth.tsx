@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Swap } from "./Swap.tsx";
 import { Games } from "./Games.tsx";
@@ -6,7 +6,7 @@ import { Wallet } from "lucide-react";
 
 export function Auth() {
   // Estado para armazenar o ID da carteira do usuário
-  const [userWalletId, setUserWalletId] = useState(null);
+  const [userWalletId, setUserWalletId] = useState<string | null>(null);
   // Estado para controlar a guia ativa
   const [activeTab, setActiveTab] = useState("swap");
 
