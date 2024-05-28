@@ -17,4 +17,4 @@ SmartBets is an online betting platform that offers a safe, transparent and dece
 - **Solidity**: Solidity is a high-level programming language used to write smart contracts on blockchain platforms such as Ethereum.
 - **Hardhat**: Hardhat is a smart contract development framework that makes it easy to compile, deploy, and test smart contracts on blockchain platforms such as Ethereum.
 
-Prévia: https://smartbets.vercel.app/
+Previous: https://smartbets.vercel.app/
