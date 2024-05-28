@@ -1,6 +1,5 @@
 // Importe de bibliotecas e componentes
-import { ethers } from "ethers";
-import React, { useState } from "react";
+
 import { Button } from "./components/ui/button";
 import { Wallet } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -103,7 +102,7 @@ export function App() {
           <h2 className=" text-white  text-7xl text-center font-bold p-8">
             Our values
           </h2>
-          <div className=" grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 p-8 mb-8">
+          <div className=" grid grid-cols-1 md:grid-cols-3 gap-4 p-8 mb-8">
             {/* Card 1 - Área 1 */}
             <div className="col-span-1 relative ">
               <div className="bg-gray-900 hover:bg-gray-800 text-white flex flex-col text-center p-16 border-none relative">
@@ -201,14 +200,14 @@ export function App() {
               <h2 className="text-4xl font-bold mb-8">
                 Features and Functionality{" "}
               </h2>
-              <p className="text-gray-400 text-xl mb-2 mb-8 ">
+              <p className="text-gray-400 text-xl mb-8 ">
                 <span className="text-white font-bold">Coin Swap:</span> This
                 functionality allows users to exchange one cryptocurrency for
                 another in a direct and simplified way, providing liquidity and
                 accessibility to the different digital assets available on the
                 market.
               </p>
-              <p className="text-gray-400 text-xl mb-2 mb-8">
+              <p className="text-gray-400 text-xl mb-8">
                 <span className="text-white font-bold">
                   Reward Exclusive NFTs:{" "}
                 </span>{" "}
@@ -217,7 +216,7 @@ export function App() {
                 platform or community. These NFTs often represent unique digital
                 items or collectibles, conferring special status on holders.
               </p>
-              <p className="text-gray-400 text-xl mb-2 mb-8">
+              <p className="text-gray-400 text-xl mb-8">
                 <span className="text-white font-bold">
                   Deflationary token:{" "}
                 </span>
