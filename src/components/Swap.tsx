@@ -16,9 +16,9 @@ import SwapIcon from "../assets/swap.svg";
 import { ChevronDown } from "lucide-react";
 
 export function Swap() {
-  const [tokens, setTokens] = useState([]);
+  const [tokens, setTokens] = useState<Token[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedTokenTop, setSelectedTokenTop] = useState(null);
+  const [selectedTokenTop, setSelectedTokenTop] = useState<Token | null>(null);
   const [selectedTokenBottom, setSelectedTokenBottom] = useState(null);
   const [isModalTopOpen, setIsModalTopOpen] = useState(false);
   const [isModalBottomOpen, setIsModalBottomOpen] = useState(false);
