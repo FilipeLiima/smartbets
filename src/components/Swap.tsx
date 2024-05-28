@@ -19,7 +19,10 @@ export function Swap() {
   const [tokens, setTokens] = useState<Token[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTokenTop, setSelectedTokenTop] = useState<Token | null>(null);
-  const [selectedTokenBottom, setSelectedTokenBottom] = useState(null);
+  const [selectedTokenBottom, setSelectedTokenBottom] = useState<Token | null>(
+    null
+  );
+
   const [isModalTopOpen, setIsModalTopOpen] = useState(false);
   const [isModalBottomOpen, setIsModalBottomOpen] = useState(false);
 
@@ -52,7 +55,7 @@ export function Swap() {
   };
 
   // Função para lidar com a seleção de um token da lista
-  const handleTokenSelectBottom = (token) => {
+  const handleTokenSelectBottom = (token: Token) => {
     setSelectedTokenBottom(token);
     setIsModalBottomOpen(false); // Fecha o modal ao selecionar um token
   };
@@ -96,10 +99,7 @@ export function Swap() {
                 className="bg-gray-800 border-gray-700 text-white font-bold py-2 px-4 rounded-2xl p-12 text-xl"
                 placeholder="You pay"
               />
-              <Dialog
-                open={isModalTopOpen}
-                onClose={() => setIsModalTopOpen(false)}
-              >
+              <Dialog open={isModalTopOpen}>
                 <DialogTrigger asChild>
                   <Button
                     className="absolute top-1/2 transform -translate-y-1/2 right-4 bg-gray-700 hover:bg-gray-600 text-lg text-white font-bold py-2 px-4 rounded-2xl"
@@ -167,10 +167,7 @@ export function Swap() {
                 className="bg-gray-800 border-gray-700 text-white font-bold py-2 px-4 rounded-2xl p-12 text-xl"
                 placeholder="You receive"
               />
-              <Dialog
-                open={isModalBottomOpen}
-                onClose={() => setIsModalBottomOpen(false)}
-              >
+              <Dialog open={isModalBottomOpen}>
                 <DialogTrigger asChild>
                   <Button
                     className="absolute top-1/2 transform -translate-y-1/2 right-4 bg-gray-700 hover:bg-gray-600 text-lg text-white font-bold py-2 px-4 rounded-2xl"
