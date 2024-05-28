@@ -16,6 +16,7 @@ import Automation from "./assets/automation.svg";
 import CCIP from "./assets/ccip.svg";
 import VRF from "./assets/vrf.svg";
 import Solidity from "./assets/solidity.svg";
+
 export let userWalletId = null;
 
 export function App() {
@@ -48,7 +49,7 @@ export function App() {
   };
 
   return (
-    <div className="bg-black h-screen w-screen relative">
+    <div className="bg-black min-h-screen w-screen relative">
       <img
         src="src/assets/logo.svg"
         alt="Logo"
