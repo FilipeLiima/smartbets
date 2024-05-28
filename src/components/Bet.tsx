@@ -1,5 +1,5 @@
 // Importe de bibliotecas e componentes
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
