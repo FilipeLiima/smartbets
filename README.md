@@ -2,9 +2,9 @@
 
 ## Project for the Chainlink Labs Hackathon
 
-SmartBets is an online betting platform that offers a safe, transparent and decentralized experience for its users. Our platform allows users to bet on a variety of sporting events including football, basketball, tennis and more, all in a decentralized and transparent way.
+**Description**: SmartBets is an online betting platform that offers a safe, transparent and decentralized experience for its users. Our platform allows users to bet on a variety of sporting events including football, basketball, tennis and more, all in a decentralized and transparent way.
 
-### Technologies used:
+## Technologies:
 
 ### Front end:
 
