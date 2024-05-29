@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import Real from "../assets/real.svg";
 import Bayern from "../assets/bayern.svg";
 import { Box } from "./Box.tsx";
+import { History } from "./History";
 
 export function Bet() {
   // Definindo os estados iniciais
@@ -16,6 +17,14 @@ export function Bet() {
   const [potentialWin, setPotentialWin] = useState<number>(0); // Potencial de ganho
   const [redirectToBox, setRedirectToBox] = useState<boolean>(false); // Estado para controlar o redirecionamento
   const [selectedCard, setSelectedCard] = useState("summary"); // Estado para controlar qual card deve ser exibido
+  const [showHistory, setShowHistory] = useState(false);
+
+  {
+    /* Renderize o componente History somente se showHistory for true */
+  }
+  {
+    showHistory && <History />;
+  }
 
   /// Função para redirecionar para a rota especificada
   const redirectToBoxComponent = () => {
@@ -118,7 +127,10 @@ export function Bet() {
               </p>
               <p className="text-gray-400 text-lg flex items-center">
                 <span className="text-white mr-2">Betting History:</span>
-                <Button className="text-gray-400 text-lg bg-gray-800 hover:bg-gray-700 rounded-2xl flex items-center">
+                <Button
+                  className="text-gray-400 text-lg bg-gray-800 hover:bg-gray-700 rounded-2xl flex items-center"
+                  onClick={() => setShowHistory(true)} // Atualize o estado para mostrar o componente History quando o botão for clicado
+                >
                   Access
                   <ArrowUpRight className="w-5 h-5 ml-2 text-gray-400" />
                 </Button>
