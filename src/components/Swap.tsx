@@ -91,7 +91,9 @@ export function Swap() {
       }
     } catch (error) {
       // Se ocorrer algum erro durante o processo, exibe o erro
-      alert(`Error adding token to wallet: ${error.message}`);
+      alert(
+        `Error adding token to wallet. Please try again later or contact support for assistance.`
+      );
     }
   };
 
@@ -143,7 +145,8 @@ export function Swap() {
                     className="absolute top-1/2 transform -translate-y-1/2 right-4 bg-gray-700 hover:bg-gray-600 text-lg text-white font-bold py-2 px-4 rounded-2xl"
                     onClick={() => setIsModalTopOpen(true)}
                   >
-                    {selectedTokenTop ? selectedTokenTop : "BET"}{" "}
+                    {selectedTokenTop ? selectedTokenTop.name : "BET"}
+
                     <ChevronDown className="ml-2 h-5 w-5 text-white inline-block" />
                   </Button>
                 </DialogTrigger>
