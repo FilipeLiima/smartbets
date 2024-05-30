@@ -59,6 +59,41 @@ export function Swap() {
     setSelectedTokenBottom(token);
     setIsModalBottomOpen(false); // Fecha o modal ao selecionar um token
   };
+  // Função para adicionar o token à carteira MetaMask
+  const addTokenToWallet = async () => {
+    try {
+      // Verifica se a MetaMask está instalada e conectada
+      if (window.ethereum && window.ethereum.isMetaMask) {
+        // Endereço do contrato do token
+        const tokenAddress = "0x73cc5E1F0aa704c5EDcbcCa97F9c9Ef0Fc9F977b";
+
+        // Objeto de solicitação para adicionar o token à carteira MetaMask
+        const params = {
+          method: "wallet_watchAsset",
+          params: {
+            type: "ERC20",
+            options: {
+              address: tokenAddress,
+              symbol: "BET", // Símbolo do token
+              decimals: 5, // Casas decimais do token
+              image: "", // URL da imagem do token (opcional)
+            },
+          },
+        };
+
+        // Chama a função ethereum.request para adicionar o token
+        await window.ethereum.request(params);
+        // Exibe mensagem de sucesso
+        alert("Token added to wallet successfully!");
+      } else {
+        // Se a MetaMask não estiver instalada ou conectada, exibe uma mensagem de erro
+        alert("MetaMask is not installed or not connected.");
+      }
+    } catch (error) {
+      // Se ocorrer algum erro durante o processo, exibe o erro
+      alert(`Error adding token to wallet: ${error.message}`);
+    }
+  };
 
   return (
     <div className="h-screen bg-black container mx-auto px-4">
@@ -77,12 +112,15 @@ export function Swap() {
       <div className="flex justify-center">
         <Card className="bg-gray-900 border-none w-[650px] m-4 p-6">
           {/* Card 1 */}
-          <Button className="bg-gray-500 hover:bg-gray-600 text-lg text-black font-bold py-2 px-4 rounded-2xl mb-4 flex items-center">
-            {"Connected wallet"}
+          <Button
+            className="bg-gray-700 hover:bg-gray-600 text-lg text-white font-bold py-2 px-4 rounded-2xl mb-4 flex items-center"
+            onClick={addTokenToWallet} // Adiciona o token à carteira MetaMask ao clicar no botão
+          >
+            BET TOKEN
           </Button>
           <h2 className="text-white font-bold mb-4 text-3xl">
-            Access staking by swapping USDT or purchasing the network's native
-            token.
+            Swap with the network's native token and exchange for USDT or any
+            other currency
           </h2>
           <img src={SwapIcon} alt="Swap" className="mb-4" />
         </Card>
@@ -105,9 +143,7 @@ export function Swap() {
                     className="absolute top-1/2 transform -translate-y-1/2 right-4 bg-gray-700 hover:bg-gray-600 text-lg text-white font-bold py-2 px-4 rounded-2xl"
                     onClick={() => setIsModalTopOpen(true)}
                   >
-                    {selectedTokenTop
-                      ? selectedTokenTop.name
-                      : "Selecionar um token"}
+                    {selectedTokenTop ? selectedTokenTop : "BET"}{" "}
                     <ChevronDown className="ml-2 h-5 w-5 text-white inline-block" />
                   </Button>
                 </DialogTrigger>

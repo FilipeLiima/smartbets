@@ -281,7 +281,7 @@ export function Bet() {
 
               {/* Botão */}
               <div className="mt-4">
-                <button className="bg-green-600 hover:bg-green-700 TEXT border-white text-black font-bold py-2 px-4 rounded-2xl w-full">
+                <button className="bg-green-600 hover:bg-green-700  border-white text-black font-bold py-2 px-4 rounded-2xl w-full">
                   BET NOW
                 </button>
               </div>
