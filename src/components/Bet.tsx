@@ -4,8 +4,8 @@ import { ArrowUpRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import Real from "../assets/real.svg";
-import Bayern from "../assets/bayern.svg";
+import Time1 from "../assets/time1.svg";
+import Time2 from "../assets/time2.svg";
 import { Box } from "./Box.tsx";
 import { History } from "./History";
 
@@ -70,13 +70,13 @@ export function Bet() {
     let typeOfBet = "";
     switch (selectedOdds) {
       case 4.5:
-        typeOfBet = "Bayern";
+        typeOfBet = "Time 1";
         break;
       case 1.34:
         typeOfBet = "Draw";
         break;
       case 8.75:
-        typeOfBet = "Real Madrid";
+        typeOfBet = "Time 2";
         break;
       default:
         typeOfBet = "Unknown";
@@ -187,13 +187,13 @@ export function Bet() {
             {/* Card 1 */}
             <Card className="bg-gray-900  text-white flex flex-col text-center p-8 border-none mx-4">
               <h3 className="text-white text-3xl font-bold mb-2">
-                Bayern vs Real Madrid
+                Bahia vs Vitória
               </h3>
-              <p className="text-gray-400 text-lg">Semifinal - Game 1 of 2</p>
+              <p className="text-gray-400 text-lg">Initial Game</p>
               <div className="flex justify-between mt-4">
-                <img src={Real} alt="Real" className="w-20 h-20" />
-                <p className="text-gray-400 font-bold text-5xl mt-4"> 2 - 1</p>
-                <img src={Bayern} alt="Bayern" className="w-20 h-20" />
+                <img src={Time2} alt="Time2" className="w-20 h-20" />
+                <p className="text-gray-400 font-bold text-5xl mt-4"> 0 - 0</p>
+                <img src={Time1} alt="Time1" className="w-20 h-20" />
               </div>
             </Card>
           </div>
