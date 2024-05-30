@@ -7,7 +7,7 @@ import { Bet } from "./Bet.tsx";
 import { ethers } from "ethers";
 
 // Defina uma interface para os dados das partidas
-interface Partida {
+interface Match {
   hash: string;
   teamHome: string;
   teamAway: string;
@@ -24,7 +24,7 @@ interface Partida {
 
 export function Games() {
   const [mostrarAposta, setMostrarAposta] = useState(false);
-  const [partidas, setPartidas] = useState<Partida[]>([]);
+  const [matches, setMatches] = useState<Match[]>([]);
 
   useEffect(() => {
     // Função para obter as partidas do contrato inteligente
@@ -40,19 +40,19 @@ export function Games() {
           "function getUpcomingMatches() view returns (tuple(bytes32 hash, string teamHome, string teamAway, uint256 date, string stadium, uint256 goalsHome, uint256 goalsAway, uint8 status, uint8 result, uint256 oddHome, uint256 oddDraw, uint256 oddAway)[])",
         ];
 
-        const contrato = new ethers.Contract(
+        const contract = new ethers.Contract(
           "0x37B5A0790344b59988e9754fA9067a0110564F04",
           abi,
           provider
         );
 
         // Chame a função do contrato para obter as partidas
-        const partidas: Partida[] = await contrato.getUpcomingMatches();
+        const matches: Match[] = await contract.getUpcomingMatches();
 
         // Atualize o estado com as partidas obtidas
-        setPartidas(partidas);
+        setMatches(matches);
       } catch (error) {
-        console.error("Erro ao obter as partidas do contrato:", error);
+        console.error("Error fetching matches:", error);
       }
     }
 
@@ -77,19 +77,53 @@ export function Games() {
             Choose your team to bet on:{" "}
           </h3>
           <div className="h-screen md:flex md:flex-wrap md:justify-center">
+            {/* Exibir o card da esquerda como o card do meio quando não houver partidas futuras */}
             <div className="md:w-1/3">
-              {partidas.map((partida, index) => (
+              {[
+                ...matches,
+                {
+                  hash: "",
+                  teamHome: "",
+                  teamAway: "",
+                  stadium: "",
+                  date: 0,
+                  goalsHome: 0,
+                  goalsAway: 0,
+                  status: 0,
+                  result: 0,
+                  oddHome: 0,
+                  oddDraw: 0,
+                  oddAway: 0,
+                },
+                {
+                  hash: "",
+                  teamHome: "",
+                  teamAway: "",
+                  stadium: "",
+                  date: 0,
+                  goalsHome: 0,
+                  goalsAway: 0,
+                  status: 0,
+                  result: 0,
+                  oddHome: 0,
+                  oddDraw: 0,
+                  oddAway: 0,
+                },
+              ].map((match, index) => (
                 <div className="mb-8" key={index}>
                   <Card className="bg-gray-900 hover:bg-gray-800 text-white flex flex-col text-center p-8 border-none mx-4">
                     <h3 className="text-white text-3xl font-bold mb-2">
-                      {partida.teamHome} vs {partida.teamAway}
+                      {match.teamHome
+                        ? `${match.teamHome} vs ${match.teamAway}`
+                        : "Bahia vs Vitória"}
                     </h3>
-                    <p className="text-gray-400 text-lg">{partida.stadium}</p>
+                    <p className="text-gray-400 text-lg">
+                      {match.stadium ? match.stadium : "Initial Game"}
+                    </p>
                     <div className="flex justify-between mt-4">
                       <img src={Time2} alt="Time2" className="w-20 h-20" />
                       <p className="text-gray-400 font-bold text-5xl mt-4">
-                        {" "}
-                        {partida.status}
+                        {match.status ? match.status : "0 - 0"}
                       </p>
                       <img src={Time1} alt="Time1" className="w-20 h-20" />
                     </div>
@@ -115,7 +149,6 @@ export function Games() {
                     <div className="flex justify-between mt-4">
                       <img src={Time2} alt="Time2" className="w-20 h-20" />
                       <p className="text-gray-400 font-bold text-5xl mt-4">
-                        {" "}
                         0 - 0
                       </p>
                       <img src={Time1} alt="Time1" className="w-20 h-20" />
