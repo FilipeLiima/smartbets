@@ -4,12 +4,32 @@ import { ArrowUpRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import Time1 from "../assets/time1.svg";
-import Time2 from "../assets/time2.svg";
 import { Box } from "./Box.tsx";
 import { History } from "./History";
+// Defina uma interface para os dados das partidas
+interface Match {
+  hash: string;
+  teamHome: string;
+  teamHomeLogo: string; // Adicione a propriedade teamHomeLogo
+  teamAway: string;
+  teamAwayLogo: string; // Adicione a propriedade teamAwayLogo
+  stadium: string;
+  city: string;
+  date: string; // Adicione a propriedade date
+  goalsHome: number; // Adicione a propriedade goalsHome
+  goalsAway: number; // Adicione a propriedade goalsAway
+  status: string;
+  result: number;
+  oddHome: number;
+  oddDraw: number;
+  oddAway: number;
+}
 
-export function Bet() {
+interface BetProps {
+  match: Match | null;
+}
+
+export function Bet({ match }: BetProps) {
   // Definindo os estados iniciais
 
   const [betValue, setBetValue] = useState<number>(0); // Valor da aposta
@@ -196,17 +216,34 @@ export function Bet() {
         <div className="md:w-1/3">
           <div className="mb-4 ">
             {/* Card 1 */}
-            <Card className="bg-gray-900  text-white flex flex-col text-center p-8 border-none mx-4">
-              <h3 className="text-white text-3xl font-bold mb-2">
-                Bahia vs Vitória
-              </h3>
-              <p className="text-gray-400 text-lg">Initial Game</p>
-              <div className="flex justify-between mt-4">
-                <img src={Time2} alt="Time2" className="w-20 h-20" />
-                <p className="text-gray-400 font-bold text-5xl mt-4"> 0 - 0</p>
-                <img src={Time1} alt="Time1" className="w-20 h-20" />
-              </div>
-            </Card>
+            {match && (
+              <Card className="bg-gray-900 text-white flex flex-col text-center p-8 border-none mx-4">
+                {/* Renderize os dados do jogo selecionado */}
+                <h3 className="text-white text-3xl font-bold mb-2 truncate">
+                  {match.teamHome} vs {match.teamAway}
+                </h3>
+
+                <div className="text-gray-400 text-lg mb-4">
+                  Data partida: {match.date}
+                </div>
+                <div className="flex justify-between items-center mt-4 mb-4">
+                  <img
+                    src={match.teamHomeLogo}
+                    alt={match.teamHome}
+                    className="w-20 h-20"
+                  />
+                  <p className="text-gray-400 font-bold text-5xl mt-4">
+                    {match.goalsHome} - {match.goalsAway}
+                  </p>
+                  <img
+                    src={match.teamAwayLogo}
+                    alt={match.teamAway}
+                    className="w-20 h-20"
+                  />
+                </div>
+              </Card>
+            )}
+            {!match && <p>No match selected</p>}
           </div>
           {/* Card 2 */}
           <div>

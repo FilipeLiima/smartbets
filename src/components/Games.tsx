@@ -1,21 +1,20 @@
-// Importe de bibliotecas e componentes
 import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
-import Time1 from "../assets/time1.svg";
-import Time2 from "../assets/time2.svg";
 import { Bet } from "./Bet.tsx";
-import { ethers } from "ethers";
 
 // Defina uma interface para os dados das partidas
 interface Match {
   hash: string;
   teamHome: string;
+  teamHomeLogo: string;
   teamAway: string;
+  teamAwayLogo: string;
   stadium: string;
-  date: number;
+  city: string;
+  date: string;
   goalsHome: number;
   goalsAway: number;
-  status: number;
+  status: string;
   result: number;
   oddHome: number;
   oddDraw: number;
@@ -25,176 +24,170 @@ interface Match {
 export function Games() {
   const [mostrarAposta, setMostrarAposta] = useState(false);
   const [matches, setMatches] = useState<Match[]>([]);
+  const [selectedMatch, setSelectedMatch] = useState<Match | null>(null); // Estado para armazenar o jogo selecionado
 
   useEffect(() => {
-    // Função para obter as partidas do contrato inteligente
-    async function obterPartidasDoContrato() {
+    // Função para obter as partidas da API de futebol
+    async function obterPartidasDaAPI() {
       try {
-        // Conecte-se ao provedor Ethereum
-        const provider = ethers.getDefaultProvider(
-          "https://sepolia.infura.io/v3/de59a0c878b54eb2b3c6b2ec1aaf10d5"
+        const response = await fetch(
+          "https://api-football-v1.p.rapidapi.com/v3/fixtures?league=71&season=2024",
+          {
+            method: "GET",
+            headers: {
+              "x-rapidapi-host": "api-football-v1.p.rapidapi.com",
+              "x-rapidapi-key":
+                "f644b8c9b8msh5573ca49d8aa27ep15d9d4jsn089687943fba", // Substitua pela sua chave de API real
+            },
+          }
         );
 
-        // ABI simplificada apenas com a função que estamos chamando
-        const abi = [
-          "function getUpcomingMatches() view returns (tuple(bytes32 hash, string teamHome, string teamAway, uint256 date, string stadium, uint256 goalsHome, uint256 goalsAway, uint8 status, uint8 result, uint256 oddHome, uint256 oddDraw, uint256 oddAway)[])",
-        ];
+        if (!response.ok) {
+          throw new Error("Network response was not ok " + response.statusText);
+        }
 
-        const contract = new ethers.Contract(
-          "0x37B5A0790344b59988e9754fA9067a0110564F04",
-          abi,
-          provider
-        );
-
-        // Chame a função do contrato para obter as partidas
-        const matches: Match[] = await contract.getUpcomingMatches();
+        const data = await response.json();
+        const fixtures = data.response.map((fixture: any) => ({
+          hash: fixture.fixture.id.toString(),
+          teamHome: fixture.teams.home.name,
+          teamHomeLogo: fixture.teams.home.logo,
+          teamAway: fixture.teams.away.name,
+          teamAwayLogo: fixture.teams.away.logo,
+          stadium: fixture.fixture.venue.name,
+          city: fixture.fixture.venue.city,
+          date: new Date(fixture.fixture.date).toLocaleString(),
+          goalsHome: fixture.goals.home,
+          goalsAway: fixture.goals.away,
+          status: fixture.fixture.status.short,
+          result:
+            fixture.score.fulltime.home > fixture.score.fulltime.away
+              ? 1
+              : fixture.score.fulltime.home < fixture.score.fulltime.away
+              ? 2
+              : 0,
+          oddHome: 0, // Adicione as odds reais se disponíveis na API
+          oddDraw: 0, // Adicione as odds reais se disponíveis na API
+          oddAway: 0, // Adicione as odds reais se disponíveis na API
+        }));
 
         // Atualize o estado com as partidas obtidas
-        setMatches(matches);
+        setMatches(fixtures);
       } catch (error) {
         console.error("Error fetching matches:", error);
       }
     }
 
-    // Chame a função para obter as partidas do contrato quando o componente for montado
-    obterPartidasDoContrato();
+    // Chame a função para obter as partidas da API quando o componente for montado
+    obterPartidasDaAPI();
   }, []); // Executar apenas uma vez, quando o componente é montado
 
   // Função para lidar com o clique no botão de aposta
-  const handleBetClick = () => {
+  const handleBetClick = (match: Match) => {
+    setSelectedMatch(match); // Armazena o jogo selecionado no estado
     setMostrarAposta(true); // Atualiza o estado para mostrar a interface de aposta
   };
 
   return (
-    <div className="bg-black container mx-auto px-4">
+    <div className="bg-black container mx-auto px-4 ">
       {!mostrarAposta && (
-        <div className="text-center">
+        <div className="text-center h-screen">
           <h2 className="text-4xl font-bold text-gray-400">Featured Game</h2>
           <p className="text-green-400 mt-4 font-bold text-7xl ">
             Brazilian Championship Series A
           </p>
-          <h3 className=" text-xl mt-4 mb-6 text-gray-400">
-            Choose your team to bet on:{" "}
+          <h3 className="text-xl mt-4 mb-6 text-gray-400 ">
+            Choose your team to bet on:
           </h3>
-          <div className="h-screen md:flex md:flex-wrap md:justify-center">
-            {/* Exibir o card da esquerda como o card do meio quando não houver partidas futuras */}
-            <div className="md:w-1/3">
-              {[
-                ...matches,
-                {
-                  hash: "",
-                  teamHome: "",
-                  teamAway: "",
-                  stadium: "",
-                  date: 0,
-                  goalsHome: 0,
-                  goalsAway: 0,
-                  status: 0,
-                  result: 0,
-                  oddHome: 0,
-                  oddDraw: 0,
-                  oddAway: 0,
-                },
-                {
-                  hash: "",
-                  teamHome: "",
-                  teamAway: "",
-                  stadium: "",
-                  date: 0,
-                  goalsHome: 0,
-                  goalsAway: 0,
-                  status: 0,
-                  result: 0,
-                  oddHome: 0,
-                  oddDraw: 0,
-                  oddAway: 0,
-                },
-              ].map((match, index) => (
-                <div className="mb-8" key={index}>
-                  <Card className="bg-gray-900 hover:bg-gray-800 text-white flex flex-col text-center p-8 border-none mx-4">
-                    <h3 className="text-white text-3xl font-bold mb-2">
-                      {match.teamHome
-                        ? `${match.teamHome} vs ${match.teamAway}`
-                        : "Bahia vs Vitória"}
-                    </h3>
-                    <p className="text-gray-400 text-lg">
-                      {match.stadium ? match.stadium : "Initial Game"}
+          <div className="  grid grid-rows-2 gap-4 ">
+            <div className=" grid grid-cols-3 gap-4 ">
+              {matches.slice(0, 3).map((match, index) => (
+                <Card
+                  key={index}
+                  className="bg-gray-900 hover:bg-gray-800 text-white flex flex-col text-center p-8 border-none "
+                >
+                  <h3 className="text-white text-3xl font-bold mb-2 truncate">
+                    {match.teamHome} vs {match.teamAway}
+                  </h3>
+                  <div className="text-gray-400 text-lg mb-2">
+                    Estádio: {match.stadium}
+                  </div>
+                  <div className="text-gray-400 text-lg mb-2">
+                    Cidade: {match.city}
+                  </div>
+                  <div className="text-gray-400 text-lg mb-4">
+                    Data partida:{match.date}
+                  </div>
+                  <div className="flex justify-between items-center mt-4 mb-4">
+                    <img
+                      src={match.teamHomeLogo}
+                      alt={match.teamHome}
+                      className="w-20 h-20"
+                    />
+                    <p className="text-gray-400 font-bold text-5xl mt-4">
+                      {match.goalsHome} - {match.goalsAway}
                     </p>
-                    <div className="flex justify-between mt-4">
-                      <img src={Time2} alt="Time2" className="w-20 h-20" />
-                      <p className="text-gray-400 font-bold text-5xl mt-4">
-                        {match.status ? match.status : "0 - 0"}
-                      </p>
-                      <img src={Time1} alt="Time1" className="w-20 h-20" />
-                    </div>
-                    <button
-                      onClick={handleBetClick}
-                      className="bg-green-500 hover:bg-green-700 text-black font-bold py-2 px-4 rounded mt-4"
-                    >
-                      BET
-                    </button>
-                  </Card>
-                </div>
-              ))}
-            </div>
+                    <img
+                      src={match.teamAwayLogo}
+                      alt={match.teamAway}
+                      className="w-20 h-20"
+                    />
+                  </div>
 
-            {/* Coluna do meio */}
-            <div className="md:w-1/3">
-              {[3, 4].map((index) => (
-                <div className="mb-8" key={index}>
-                  <Card className="bg-gray-900 hover:bg-gray-800 text-white flex flex-col text-center p-8 border-none mx-4">
-                    <h3 className="text-white text-3xl font-bold mb-2">
-                      Bahia vs Vitória
-                    </h3>
-                    <p className="text-gray-400 text-lg">Initial Game</p>
-                    <div className="flex justify-between mt-4">
-                      <img src={Time2} alt="Time2" className="w-20 h-20" />
-                      <p className="text-gray-400 font-bold text-5xl mt-4">
-                        0 - 0
-                      </p>
-                      <img src={Time1} alt="Time1" className="w-20 h-20" />
-                    </div>
-                    <button
-                      onClick={handleBetClick}
-                      className="bg-green-500 hover:bg-green-700 text-black font-bold py-2 px-4 rounded mt-4"
-                    >
-                      BET
-                    </button>
-                  </Card>
-                </div>
+                  <button
+                    onClick={() => handleBetClick(match)} // Passa o jogo selecionado para a função de clique
+                    className="bg-green-500 hover:bg-green-700 text-black font-bold py-2 px-4 rounded mt-4"
+                  >
+                    BET
+                  </button>
+                </Card>
               ))}
             </div>
-            {/* Coluna da direita */}
-            <div className="md:w-1/3">
-              {[5, 6].map((index) => (
-                <div className="mb-8" key={index}>
-                  <Card className="bg-gray-900 hover:bg-gray-800 text-white flex flex-col text-center p-8 border-none mx-4">
-                    <h3 className="text-white text-3xl font-bold mb-2">
-                      Bahia vs Vitória
-                    </h3>
-                    <p className="text-gray-400 text-lg">Initial Game</p>
-                    <div className="flex justify-between mt-4">
-                      <img src={Time2} alt="Time2" className="w-20 h-20" />
-                      <p className="text-gray-400 font-bold text-5xl mt-4">
-                        {" "}
-                        0 - 0
-                      </p>
-                      <img src={Time1} alt="Time1" className="w-20 h-20" />
-                    </div>
-                    <button
-                      onClick={handleBetClick}
-                      className="bg-green-500 hover:bg-green-700 text-black font-bold py-2 px-4 rounded mt-4"
-                    >
-                      BET
-                    </button>
-                  </Card>
-                </div>
+            <div className="grid grid-cols-3 gap-4">
+              {matches.slice(3, 6).map((match, index) => (
+                <Card
+                  key={index}
+                  className="bg-gray-900 hover:bg-gray-800 text-white flex flex-col text-center p-8 border-none"
+                >
+                  <h3 className="text-white text-3xl font-bold mb-2 truncate">
+                    {match.teamHome} vs {match.teamAway}
+                  </h3>
+                  <div className="text-gray-400 text-lg mb-2">
+                    Estádio: {match.stadium}
+                  </div>
+                  <div className="text-gray-400 text-lg mb-2">
+                    Cidade: {match.city}
+                  </div>
+                  <div className="text-gray-400 text-lg mb-4">{match.date}</div>
+                  <div className="flex justify-between items-center mt-4 mb-4">
+                    <img
+                      src={match.teamHomeLogo}
+                      alt={match.teamHome}
+                      className="w-20 h-20"
+                    />
+                    <p className="text-gray-400 font-bold text-5xl mt-4">
+                      {match.goalsHome} - {match.goalsAway}
+                    </p>
+                    <img
+                      src={match.teamAwayLogo}
+                      alt={match.teamAway}
+                      className="w-20 h-20"
+                    />
+                  </div>
+
+                  <button
+                    onClick={() => handleBetClick(match)} // Passa o jogo selecionado para a função de clique
+                    className="bg-green-500 hover text-black font-bold py-2 px-4 rounded mt-4"
+                  >
+                    BET
+                  </button>
+                </Card>
               ))}
             </div>
           </div>
         </div>
       )}
-      {mostrarAposta && <Bet />}
+      {mostrarAposta && <Bet match={selectedMatch} />}{" "}
+      {/* Passa o jogo selecionado para a página de aposta */}
     </div>
   );
 }
