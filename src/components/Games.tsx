@@ -47,28 +47,30 @@ export function Games() {
         }
 
         const data = await response.json();
-        const fixtures = data.response.map((fixture: any) => ({
-          hash: fixture.fixture.id.toString(),
-          teamHome: fixture.teams.home.name,
-          teamHomeLogo: fixture.teams.home.logo,
-          teamAway: fixture.teams.away.name,
-          teamAwayLogo: fixture.teams.away.logo,
-          stadium: fixture.fixture.venue.name,
-          city: fixture.fixture.venue.city,
-          date: new Date(fixture.fixture.date).toLocaleString(),
-          goalsHome: fixture.goals.home,
-          goalsAway: fixture.goals.away,
-          status: fixture.fixture.status.short,
-          result:
-            fixture.score.fulltime.home > fixture.score.fulltime.away
-              ? 1
-              : fixture.score.fulltime.home < fixture.score.fulltime.away
-              ? 2
-              : 0,
-          oddHome: 0, // Adicione as odds reais se disponíveis na API
-          oddDraw: 0, // Adicione as odds reais se disponíveis na API
-          oddAway: 0, // Adicione as odds reais se disponíveis na API
-        }));
+        const fixtures = data.response
+          .filter((fixture: any) => fixture.fixture.status.short === "NS") // Filtra as partidas que não começaram
+          .map((fixture: any) => ({
+            hash: fixture.fixture.id.toString(),
+            teamHome: fixture.teams.home.name,
+            teamHomeLogo: fixture.teams.home.logo,
+            teamAway: fixture.teams.away.name,
+            teamAwayLogo: fixture.teams.away.logo,
+            stadium: fixture.fixture.venue.name,
+            city: fixture.fixture.venue.city,
+            date: new Date(fixture.fixture.date).toLocaleString(),
+            goalsHome: fixture.goals.home,
+            goalsAway: fixture.goals.away,
+            status: fixture.fixture.status.short,
+            result:
+              fixture.score.fulltime.home > fixture.score.fulltime.away
+                ? 1
+                : fixture.score.fulltime.home < fixture.score.fulltime.away
+                ? 2
+                : 0,
+            oddHome: 0, // Adicione as odds reais se disponíveis na API
+            oddDraw: 0, // Adicione as odds reais se disponíveis na API
+            oddAway: 0, // Adicione as odds reais se disponíveis na API
+          }));
 
         // Atualize o estado com as partidas obtidas
         setMatches(fixtures);
@@ -88,7 +90,7 @@ export function Games() {
   };
 
   return (
-    <div className="bg-black container mx-auto px-4 ">
+    <div className="bg-black container mx-auto px-4">
       {!mostrarAposta && (
         <div className="text-center h-screen">
           <h2 className="text-4xl font-bold text-gray-400">Featured Game</h2>
@@ -98,50 +100,54 @@ export function Games() {
           <h3 className="text-xl mt-4 mb-6 text-gray-400 ">
             Choose your team to bet on:
           </h3>
-          <div className="  grid grid-rows-2 gap-4 ">
-            <div className=" grid grid-cols-3 gap-4 ">
-              {matches.slice(0, 3).map((match, index) => (
-                <Card
-                  key={index}
-                  className="bg-gray-900 hover:bg-gray-800 text-white flex flex-col text-center p-8 border-none "
-                >
-                  <h3 className="text-white text-3xl font-bold mb-2 truncate">
-                    {match.teamHome} vs {match.teamAway}
-                  </h3>
-                  <div className="text-gray-400 text-lg mb-2">
-                    Estádio: {match.stadium}
-                  </div>
-                  <div className="text-gray-400 text-lg mb-2">
-                    Cidade: {match.city}
-                  </div>
-                  <div className="text-gray-400 text-lg mb-4">
-                    Data partida:{match.date}
-                  </div>
-                  <div className="flex justify-between items-center mt-4 mb-4">
-                    <img
-                      src={match.teamHomeLogo}
-                      alt={match.teamHome}
-                      className="w-20 h-20"
-                    />
-                    <p className="text-gray-400 font-bold text-5xl mt-4">
-                      {match.goalsHome} - {match.goalsAway}
-                    </p>
-                    <img
-                      src={match.teamAwayLogo}
-                      alt={match.teamAway}
-                      className="w-20 h-20"
-                    />
-                  </div>
-
-                  <button
-                    onClick={() => handleBetClick(match)} // Passa o jogo selecionado para a função de clique
-                    className="bg-green-500 hover:bg-green-700 text-black font-bold py-2 px-4 rounded mt-4"
+          <div className="grid grid-rows-2 gap-4">
+            <div className="grid grid-cols-3 gap-4">
+              {matches
+                .filter((match) => match.status === "NS") // Filtra apenas as partidas com status NS
+                .slice(0, 3)
+                .map((match, index) => (
+                  <Card
+                    key={index}
+                    className="bg-gray-900 hover:bg-gray-800 text-white flex flex-col text-center p-8 border-none"
                   >
-                    BET
-                  </button>
-                </Card>
-              ))}
+                    <h3 className="text-white text-3xl font-bold mb-2 truncate">
+                      {match.teamHome} vs {match.teamAway}
+                    </h3>
+                    <div className="text-gray-400 text-lg mb-2">
+                      Estádio: {match.stadium}
+                    </div>
+                    <div className="text-gray-400 text-lg mb-2">
+                      Cidade: {match.city}
+                    </div>
+                    <div className="text-gray-400 text-lg mb-4">
+                      Data partida: {match.date}
+                    </div>
+                    <div className="flex justify-between items-center mt-4 mb-4">
+                      <img
+                        src={match.teamHomeLogo}
+                        alt={match.teamHome}
+                        className="w-20 h-20"
+                      />
+                      <p className="text-gray-400 font-bold text-5xl mt-4">
+                        {match.goalsHome} - {match.goalsAway}
+                      </p>
+                      <img
+                        src={match.teamAwayLogo}
+                        alt={match.teamAway}
+                        className="w-20 h-20"
+                      />
+                    </div>
+
+                    <button
+                      onClick={() => handleBetClick(match)} // Passa o jogo selecionado para a função de clique
+                      className="bg-green-500 hover:bg-green-700 text-black font-bold py-2 px-4 rounded mt-4"
+                    >
+                      BET
+                    </button>
+                  </Card>
+                ))}
             </div>
+
             <div className="grid grid-cols-3 gap-4">
               {matches.slice(3, 6).map((match, index) => (
                 <Card
