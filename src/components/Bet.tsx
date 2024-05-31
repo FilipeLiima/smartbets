@@ -1,5 +1,5 @@
 // Importe de bibliotecas e componentes
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -18,6 +18,17 @@ export function Bet() {
   const [redirectToBox, setRedirectToBox] = useState<boolean>(false); // Estado para controlar o redirecionamento
   const [selectedCard, setSelectedCard] = useState("summary"); // Estado para controlar qual card deve ser exibido
   const [showHistory, setShowHistory] = useState(false);
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://ls.soccersapi.com/widget/res/w_custom/widget.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []); // Passamos um array vazio como segundo argumento para indicar que este efeito só deve ser executado uma vez
 
   {
     /* Renderize o componente History somente se showHistory for true */
@@ -312,28 +323,20 @@ export function Bet() {
 
       {/* Adicionando um novo card abaixo do resumo da aposta */}
       <div className="container mx-auto px-4 p-2 mt-4">
-        <Card className="bg-gray-900  text-white flex flex-col text-center p-8 border-none mx-auto">
+        <Card className="bg-gray-900 text-white flex flex-col text-center p-8 border-none mx-auto">
           <h3 className="text-white text-3xl p-4 font-bold mb-4">
             Real-Time Statistics
           </h3>
-          <div className="text-left">
-            <div className="iframe-container mb-4">
-              <iframe
-                id="sofa-standings-embed-83-58766"
-                src="https://widgets.sofascore.com/pt-BR/embed/tournament/83/season/58766/standings/Brasileiro%20Serie%20A?widgetTitle=Brasileiro%20Serie%20A&showCompetitionLogo=true&v=2"
-                style={{ height: "1031px", maxWidth: "100%", width: "100%" }}
-                frameBorder="0"
-                scrolling="no"
-              ></iframe>
-              <div
-                style={{
-                  fontSize: "12px",
-                  fontFamily: "Arial, sans-serif",
-                  textAlign: "left",
-                }}
-              ></div>
-            </div>
-          </div>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: `
+      <!-- LIVESCORE WIDGET SOCCERSAPI.COM -->
+      <div id="ls-widget" data-w="w_custom" data-height="1200" data-url="https://ls.soccersapi.com/leagues/brazil/brasileiro-serie-a/1358?w=w_custom" data-theme="Dark Mode" class="livescore-widget"></div>
+      <script type="text/javascript" src="https://ls.soccersapi.com/widget/res/awo_w5347_6659cded66400/widget.js"></script>
+      <!-- LIVESCORE WIDGET SOCCERSAPI.COM -->
+    `,
+            }}
+          />
         </Card>
       </div>
     </div>
