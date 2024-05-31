@@ -137,6 +137,7 @@ export function Games() {
                 </div>
               ))}
             </div>
+
             {/* Coluna do meio */}
             <div className="md:w-1/3">
               {[3, 4].map((index) => (
