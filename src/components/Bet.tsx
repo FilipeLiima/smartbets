@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Box } from "./Box.tsx";
-import { History } from "./History";
+import { ethers } from "ethers";
 
 interface Match {
   hash: string;
@@ -28,14 +28,95 @@ interface BetProps {
   match: Match | null;
 }
 
+interface ContractABI {
+  inputs: any[];
+  name: string;
+  outputs: any[];
+  stateMutability: string;
+  type: string;
+}
+
 export function Bet({ match }: BetProps) {
   const [betValue, setBetValue] = useState<number>(0);
   const [selectedOdds, setSelectedOdds] = useState<number>(1);
   const [potentialWin, setPotentialWin] = useState<number>(0);
   const [redirectToBox, setRedirectToBox] = useState<boolean>(false);
-  const [selectedCard, setSelectedCard] = useState("summary");
-  const [showHistory, setShowHistory] = useState(false);
+  const [selectedCard, setSelectedCard] = useState<string>("summary");
+
   const [oddsData, setOddsData] = useState<any[]>([]);
+
+  const CONTRACT_ADDRESS: string = "seu_endereço_do_contrato";
+  const CONTRACT_ABI: ContractABI[] = [
+    // Defina sua ABI aqui
+  ];
+
+  async function enviarApostaParaContrato(
+    matchHash: string,
+    betValue: number,
+    selectedOdds: number
+  ): Promise<string | boolean> {
+    try {
+      if (!window.ethereum) {
+        throw new Error("O Ethereum não está disponível neste navegador.");
+      }
+
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      if (accounts.length === 0) {
+        throw new Error("Nenhuma conta conectada.");
+      }
+
+      const provider = new ethers.BrowserProvider(window.ethereum);
+
+      // Obtenha o signer
+      const signer = await provider.getSigner();
+
+      const contrato = new ethers.Contract(
+        CONTRACT_ADDRESS,
+        CONTRACT_ABI,
+        signer
+      );
+
+      const transaction = await contrato.enviarAposta(
+        matchHash,
+        betValue,
+        selectedOdds
+      );
+
+      await transaction.wait();
+
+      return transaction.hash;
+    } catch (error: any) {
+      console.error("Erro ao enviar aposta:", error.message);
+      return false;
+    }
+  }
+
+  const handleBetNowClick = async (): Promise<void> => {
+    try {
+      if (!match) {
+        throw new Error("Nenhum jogo selecionado.");
+      }
+
+      const transactionHash = await enviarApostaParaContrato(
+        match.hash,
+        betValue,
+        selectedOdds
+      );
+
+      if (transactionHash) {
+        console.log(
+          "Aposta enviada com sucesso. Hash da transação:",
+          transactionHash
+        );
+      } else {
+        console.log("Falha ao enviar a aposta.");
+      }
+    } catch (error) {
+      console.error("Erro ao enviar a aposta:", error);
+    }
+  };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseFloat(event.target.value);
@@ -153,7 +234,6 @@ export function Bet({ match }: BetProps) {
         }
 
         const oddsData = await oddsResponse.json();
-        console.log("oddsData:", oddsData);
 
         if (oddsData && oddsData.response && oddsData.response.length > 0) {
           const matchOdds = oddsData.response.find((odds: any) => {
@@ -274,7 +354,7 @@ export function Bet({ match }: BetProps) {
                 <span className="text-white mr-2">Betting History:</span>
                 <Button
                   className="text-gray-400 text-lg bg-gray-800 hover:bg-gray-700 rounded-2xl flex items-center"
-                  onClick={() => setShowHistory(true)}
+                  onClick={() => true}
                 >
                   Access
                   <ArrowUpRight className="w-5 h-5 ml-2 text-gray-400" />
@@ -394,7 +474,10 @@ export function Bet({ match }: BetProps) {
                 You can win: ${potentialWin}
               </p>
               <div className="mt-4">
-                <button className="bg-green-600 hover:bg-green-700  border-white text-black font-bold py-2 px-4 rounded-2xl w-full">
+                <button
+                  className="bg-green-600 hover:bg-green-700 border-white text-black font-bold py-2 px-4 rounded-2xl w-full"
+                  onClick={handleBetNowClick} // Coloque o evento onClick aqui, dentro do atributo button
+                >
                   BET NOW
                 </button>
               </div>
