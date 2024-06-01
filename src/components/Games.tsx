@@ -24,7 +24,7 @@ interface Match {
 export function Games() {
   const [mostrarAposta, setMostrarAposta] = useState(false);
   const [matches, setMatches] = useState<Match[]>([]);
-  const [selectedMatch, setSelectedMatch] = useState<Match | null>(null); // Estado para armazenar o jogo selecionado
+  const [selectedMatch, setSelectedMatch] = useState<Match | null>(null);
 
   useEffect(() => {
     // Função para obter as partidas da API de futebol
