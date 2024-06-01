@@ -190,7 +190,8 @@ export function Games() {
           </div>
         </div>
       )}
-      {mostrarAposta && <Bet match={selectedMatch} />}{" "}
+      {mostrarAposta && selectedMatch && <Bet match={selectedMatch} />}
+
       {/* Passa o jogo selecionado para a página de aposta */}
     </div>
   );
