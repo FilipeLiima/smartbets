@@ -1,4 +1,3 @@
-// Importe de bibliotecas e componentes
 import React, { useState, useEffect } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
@@ -6,18 +5,18 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Box } from "./Box.tsx";
 import { History } from "./History";
-// Defina uma interface para os dados das partidas
+
 interface Match {
   hash: string;
   teamHome: string;
-  teamHomeLogo: string; // Adicione a propriedade teamHomeLogo
+  teamHomeLogo: string;
   teamAway: string;
-  teamAwayLogo: string; // Adicione a propriedade teamAwayLogo
+  teamAwayLogo: string;
   stadium: string;
   city: string;
-  date: string; // Adicione a propriedade date
-  goalsHome: number; // Adicione a propriedade goalsHome
-  goalsAway: number; // Adicione a propriedade goalsAway
+  date: string;
+  goalsHome: number;
+  goalsAway: number;
   status: string;
   result: number;
   oddHome: number;
@@ -30,14 +29,102 @@ interface BetProps {
 }
 
 export function Bet({ match }: BetProps) {
-  // Definindo os estados iniciais
-
-  const [betValue, setBetValue] = useState<number>(0); // Valor da aposta
-  const [selectedOdds, setSelectedOdds] = useState<number>(1); // Valor padrão das odds
-  const [potentialWin, setPotentialWin] = useState<number>(0); // Potencial de ganho
-  const [redirectToBox, setRedirectToBox] = useState<boolean>(false); // Estado para controlar o redirecionamento
-  const [selectedCard, setSelectedCard] = useState("summary"); // Estado para controlar qual card deve ser exibido
+  const [betValue, setBetValue] = useState<number>(0);
+  const [selectedOdds, setSelectedOdds] = useState<number>(1);
+  const [potentialWin, setPotentialWin] = useState<number>(0);
+  const [redirectToBox, setRedirectToBox] = useState<boolean>(false);
+  const [selectedCard, setSelectedCard] = useState("summary");
   const [showHistory, setShowHistory] = useState(false);
+  const [oddsData, setOddsData] = useState<any[]>([]);
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseFloat(event.target.value);
+    setBetValue(value);
+
+    if (selectedOdds !== 1) {
+      const potentialWin = selectedOdds * value;
+      setPotentialWin(parseFloat(potentialWin.toFixed(2)));
+    }
+  };
+
+  const handleOddsSelect = (odds: number) => {
+    setSelectedOdds(odds);
+
+    if (odds !== null) {
+      const selectedMatchOdds = oddsData.find(
+        (odds: any) => odds.fixture.id === match?.hash
+      );
+
+      if (selectedMatchOdds) {
+        const matchWinnerOdds = selectedMatchOdds.bookmakers.find(
+          (bookmaker: any) => bookmaker.name === "Match Winner"
+        );
+
+        if (matchWinnerOdds) {
+          const selectedOdd = matchWinnerOdds.bets
+            .find(
+              (bet: any) => bet.id === 1 // Assumindo que "Match Winner" tem o id 1
+            )
+            .values.find((value: any) => parseFloat(value.odd) === odds);
+
+          if (selectedOdd) {
+            const potentialWin = parseFloat(selectedOdd.odd) * betValue;
+            setPotentialWin(Number(potentialWin.toFixed(2)));
+          }
+        }
+      }
+    }
+  };
+
+  const renderOddsButtons = () => {
+    // Verificar se há dados de odds disponíveis
+    if (!Array.isArray(oddsData)) {
+      return null;
+    }
+
+    // Procurar as odds para a partida selecionada
+    const selectedMatchOdds = oddsData.find(
+      (odds: any) => odds.fixture.id === match?.hash
+    );
+
+    // Se não houver odds disponíveis para a partida selecionada
+    if (!selectedMatchOdds) {
+      // Definir as odds padrão
+      const defaultOdds = [
+        { value: "Home", odd: "1.83" },
+        { value: "Draw", odd: "2.90" },
+        { value: "Away", odd: "4.75" },
+      ];
+
+      // Retornar os botões de odds com as odds padrão
+      return defaultOdds.map((value: any, index: number) => (
+        <div key={index} className="mr-2">
+          <Button
+            className="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-2xl mb-2"
+            onClick={() => handleOddsSelect(parseFloat(value.odd))}
+          >
+            {getTeamName(parseFloat(value.odd))} - {value.odd}
+          </Button>
+          <div className="text-gray-500">
+            <p>{getTeamName(parseFloat(value.odd))}</p>
+          </div>
+        </div>
+      ));
+    }
+  };
+
+  const getTeamName = (odds: number) => {
+    switch (odds) {
+      case 4.5:
+        return "Bayern";
+      case 1.34:
+        return "Draw";
+      case 8.75:
+        return "Real Madrid";
+      default:
+        return "";
+    }
+  };
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -45,50 +132,81 @@ export function Bet({ match }: BetProps) {
     script.async = true;
     document.body.appendChild(script);
 
+    const obterOddsDaAPI = async () => {
+      try {
+        const oddsResponse = await fetch(
+          "https://api-football-v1.p.rapidapi.com/v3/odds?league=71&season=2024",
+          {
+            method: "GET",
+            headers: {
+              "x-rapidapi-host": "api-football-v1.p.rapidapi.com",
+              "x-rapidapi-key":
+                "f644b8c9b8msh5573ca49d8aa27ep15d9d4jsn089687943fba",
+            },
+          }
+        );
+
+        if (!oddsResponse.ok) {
+          throw new Error(
+            "Network response was not ok " + oddsResponse.statusText
+          );
+        }
+
+        const oddsData = await oddsResponse.json();
+        console.log("oddsData:", oddsData);
+
+        if (oddsData && oddsData.response && oddsData.response.length > 0) {
+          const matchOdds = oddsData.response.find((odds: any) => {
+            return odds.fixture.id === match?.hash;
+          });
+
+          if (matchOdds) {
+            // Encontrou as odds para a partida selecionada
+            const allOdds: {
+              bookmaker: string;
+              bet: string;
+              value: string;
+              odd: string;
+            }[] = [];
+
+            // Iterar sobre os bookmakers e suas respectivas apostas
+            matchOdds.bookmakers.forEach(
+              (bookmaker: { name: string; bets: any[] }) => {
+                bookmaker.bets.forEach(
+                  (bet: { name: string; values: any[] }) => {
+                    bet.values.forEach(
+                      (value: { value: string; odd: string }) => {
+                        allOdds.push({
+                          bookmaker: bookmaker.name,
+                          bet: bet.name,
+                          value: value.value,
+                          odd: value.odd,
+                        });
+                      }
+                    );
+                  }
+                );
+              }
+            );
+
+            // Atualizar o estado com todas as odds disponíveis
+            setOddsData(allOdds);
+            return;
+          }
+        }
+        // Se não houver odds disponíveis para a partida selecionada
+        setOddsData([]);
+      } catch (error) {
+        console.error("Erro ao obter dados das odds da API:", error);
+      }
+    };
+    obterOddsDaAPI();
+
     return () => {
       document.body.removeChild(script);
     };
-  }, []); // Passamos um array vazio como segundo argumento para indicar que este efeito só deve ser executado uma vez
+  }, []);
 
-  {
-    /* Renderize o componente History somente se showHistory for true */
-  }
-  {
-    showHistory && <History />;
-  }
-
-  /// Função para redirecionar para a rota especificada
-  const redirectToBoxComponent = () => {
-    setRedirectToBox(true); // Define o estado para redirecionar para verdadeiro
-  };
-  // Verifique se o estado redirectToBox é verdadeiro e renderize o componente Box se for
-  if (redirectToBox) {
-    return <Box />;
-  }
-
-  // Função para lidar com a mudança de valor no input
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseFloat(event.target.value); // Convertendo o valor para número
-
-    setBetValue(value); // Atualiza o valor da aposta
-
-    // Calcula o potencial de ganho somente se as odds forem selecionadas
-    if (selectedOdds !== 1) {
-      const potentialWin = selectedOdds * value; // Calcula o potencial de ganho com base nas odds e no valor da aposta
-      setPotentialWin(parseFloat(potentialWin.toFixed(2))); // Define o potencial de ganho
-    }
-  };
-  // Função para selecionar as odds
-  const handleOddsSelect = (odds: number) => {
-    setSelectedOdds(odds); // Atualiza as odds selecionadas
-
-    // Calcula o potencial de ganho somente se as odds forem selecionadas
-    if (selectedOdds !== 1) {
-      const potentialWin = selectedOdds * betValue; // Calcula o potencial de ganho com base nas odds e no valor da aposta
-      setPotentialWin(Number(potentialWin.toFixed(2))); // Define o potencial de ganho
-    }
-  };
-  // Função para obter a data atual formatada
   const getCurrentDate = () => {
     const date = new Date();
     const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1)
@@ -96,7 +214,7 @@ export function Bet({ match }: BetProps) {
       .padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
     return formattedDate;
   };
-  // Função para obter o tipo de aposta com base nas odds selecionadas
+
   const getTypeOfBet = () => {
     let typeOfBet = "";
     switch (selectedOdds) {
@@ -115,12 +233,10 @@ export function Bet({ match }: BetProps) {
     return typeOfBet;
   };
 
-  // Função para lidar com o clique nos botões de SUMMARY e BONUS
   const handleButtonClick = (cardType: string) => {
-    setSelectedCard(cardType); // Atualiza o estado para o tipo de card clicado
+    setSelectedCard(cardType);
   };
 
-  // Renderização condicional dos cards com base no estado selectedCard
   const renderSelectedCard = () => {
     if (selectedCard === "summary") {
       return (
@@ -141,10 +257,11 @@ export function Bet({ match }: BetProps) {
                 <span className="text-white">Bet Date:</span> {getCurrentDate()}
               </p>
               <p className="text-gray-400 text-lg">
-                <span className="text-white">Teams:</span>
+                <span className="text-white">Teams:</span> {match?.teamHome} vs{" "}
+                {match?.teamAway}
               </p>
               <p className="text-gray-400 text-lg">
-                <span className="text-white">Stadium:</span>
+                <span className="text-white">Stadium:</span> {match?.stadium}
               </p>
               <p className="text-gray-400 text-lg">
                 <span className="text-white">Amount Bet:</span> {betValue}
@@ -153,14 +270,11 @@ export function Bet({ match }: BetProps) {
                 <span className="text-white">Possible Earnings:</span>{" "}
                 {potentialWin}
               </p>
-              <p className="text-gray-400 text-lg">
-                <span className="text-white">Current Status:</span>
-              </p>
               <p className="text-gray-400 text-lg flex items-center">
                 <span className="text-white mr-2">Betting History:</span>
                 <Button
                   className="text-gray-400 text-lg bg-gray-800 hover:bg-gray-700 rounded-2xl flex items-center"
-                  onClick={() => setShowHistory(true)} // Atualize o estado para mostrar o componente History quando o botão for clicado
+                  onClick={() => setShowHistory(true)}
                 >
                   Access
                   <ArrowUpRight className="w-5 h-5 ml-2 text-gray-400" />
@@ -200,6 +314,14 @@ export function Bet({ match }: BetProps) {
     }
   };
 
+  const redirectToBoxComponent = () => {
+    setRedirectToBox(true);
+  };
+
+  if (redirectToBox) {
+    return <Box />;
+  }
+
   return (
     <div className="container mx-auto px-4 ">
       <div className="text-white text-center p-8">
@@ -212,17 +334,13 @@ export function Bet({ match }: BetProps) {
         </h3>
       </div>
       <div className="md:flex md:justify-between">
-        {/* Coluna da esquerda */}
         <div className="md:w-1/3">
           <div className="mb-4 ">
-            {/* Card 1 */}
             {match && (
               <Card className="bg-gray-900 text-white flex flex-col text-center p-8 border-none mx-4">
-                {/* Renderize os dados do jogo selecionado */}
                 <h3 className="text-white text-3xl font-bold mb-2 truncate">
                   {match.teamHome} vs {match.teamAway}
                 </h3>
-
                 <div className="text-gray-400 text-lg mb-4">
                   Data partida: {match.date}
                 </div>
@@ -245,73 +363,24 @@ export function Bet({ match }: BetProps) {
             )}
             {!match && <p>No match selected</p>}
           </div>
-          {/* Card 2 */}
           <div>
-            {/* Conteúdo do card 2 */}
             <Card className="bg-gray-900  text-white flex flex-col text-center p-8 border-none mx-4 ">
-              {/* Frase */}
               <p className="text-white text-3xl font-bold mb-4">
-                Step 1 - Select the type:
+                Step 1 - Select the odds:
               </p>
-
-              {/* Botões */}
+              <p className="text-gray-500 text-xl  mb-4">Home - Draw - Away</p>
               <div className="mb-4 flex justify-between">
-                <div className="mr-2">
-                  <Button
-                    className="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-2xl mb-2"
-                    onClick={() => handleOddsSelect(4.5)}
-                  >
-                    4.50
-                  </Button>
-                  {/* Informações abaixo do botão 1 */}
-                  <div className="text-gray-500">
-                    <p>Bayern</p>
-                  </div>
-                </div>
-
-                {/* Botão para selecionar odds */}
-                <div className="mr-2">
-                  <Button
-                    className="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-2xl mb-2"
-                    onClick={() => handleOddsSelect(1.34)}
-                  >
-                    1.34
-                  </Button>
-                  {/* Informações abaixo do botão 2 */}
-                  <div className="text-gray-500">
-                    <p>Draw</p>
-                  </div>
-                </div>
-
-                {/* Botão para selecionar odds */}
-                <div>
-                  <Button
-                    className="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-2xl mb-2"
-                    onClick={() => handleOddsSelect(8.75)}
-                  >
-                    8.75
-                  </Button>
-                  {/* Informações abaixo do botão 3 */}
-                  <div className="text-gray-500">
-                    <p>Real Madrid</p>
-                  </div>
-                </div>
+                {renderOddsButtons()}
               </div>
             </Card>
           </div>
         </div>
-
-        {/* Coluna da direita */}
         <div className="md:w-2/3">
-          {/* Card 3 */}
           <div className="mb-4 h-full flex flex-col justify-between">
-            {/* Conteúdo do card 3 */}
             <Card className="bg-gray-900  text-white flex flex-col text-center p-8 border-none mx-4 h-full">
-              {/* Frase inicial */}
               <p className="text-white text-3xl font-bold  mb-2">
                 Step 2 – Enter the value::{" "}
               </p>
-              {/* Valor grande */}
               <div className="flex-1 flex flex-col justify-center items-center">
                 <Input
                   type="number"
@@ -321,13 +390,9 @@ export function Bet({ match }: BetProps) {
                   placeholder="Enter the bet amount"
                 />
               </div>
-              {/* Potencial ganho */}
               <p className="text-gray-400 text-7xl font-bold text-center mb-6">
                 You can win: ${potentialWin}
               </p>
-              {/* Campo de input */}
-
-              {/* Botão */}
               <div className="mt-4">
                 <button className="bg-green-600 hover:bg-green-700  border-white text-black font-bold py-2 px-4 rounded-2xl w-full">
                   BET NOW
@@ -338,7 +403,6 @@ export function Bet({ match }: BetProps) {
         </div>
       </div>
       <div>
-        {/* Botões para selecionar o card */}
         <div className="container px-4 p-4 mt-6">
           <Button
             className="bg-black hover:bg-black text-2xl border-none text-white font-bold py-2 px-4"
@@ -353,12 +417,8 @@ export function Bet({ match }: BetProps) {
             BONUS
           </Button>
         </div>
-
-        {/* Renderização condicional do card selecionado */}
         {renderSelectedCard()}
       </div>
-
-      {/* Adicionando um novo card abaixo do resumo da aposta */}
       <div className="container mx-auto px-4 p-2 mt-4">
         <Card className="bg-gray-900 text-white flex flex-col text-center p-8 border-none mx-auto">
           <h3 className="text-white text-3xl p-4 font-bold mb-4">

@@ -16,9 +16,9 @@ interface Match {
   goalsAway: number;
   status: string;
   result: number;
-  oddHome: number;
-  oddDraw: number;
-  oddAway: number;
+  oddHome: number; // Adicione essa propriedade
+  oddDraw: number; // Adicione essa propriedade
+  oddAway: number; // Adicione essa propriedade
 }
 
 export function Games() {
@@ -47,6 +47,7 @@ export function Games() {
         }
 
         const data = await response.json();
+
         const fixtures = data.response
           .filter((fixture: any) => fixture.fixture.status.short === "NS") // Filtra as partidas que não começaram
           .map((fixture: any) => ({
@@ -67,9 +68,6 @@ export function Games() {
                 : fixture.score.fulltime.home < fixture.score.fulltime.away
                 ? 2
                 : 0,
-            oddHome: 0, // Adicione as odds reais se disponíveis na API
-            oddDraw: 0, // Adicione as odds reais se disponíveis na API
-            oddAway: 0, // Adicione as odds reais se disponíveis na API
           }));
 
         // Atualize o estado com as partidas obtidas
