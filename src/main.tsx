@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { App } from "./App.tsx";
 import { Auth } from "./components/Auth.tsx";
 import { Games } from "./components/Games.tsx";
-
 import { Box } from "./components/Box.tsx";
 import { History } from "./components/History.tsx";
 import "./global.css";
