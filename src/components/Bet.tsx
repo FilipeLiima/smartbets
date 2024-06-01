@@ -42,10 +42,9 @@ export function Bet({ match }: BetProps) {
   const [potentialWin, setPotentialWin] = useState<number>(0);
   const [redirectToBox, setRedirectToBox] = useState<boolean>(false);
   const [selectedCard, setSelectedCard] = useState<string>("summary");
-
   const [oddsData, setOddsData] = useState<any[]>([]);
 
-  const CONTRACT_ADDRESS: string = "";
+  const CONTRACT_ADDRESS: string = "0xacA1CE28060dEC742c33f7387be57D27694EA30F"; // Defina seu endereço de contrato aqui
   const CONTRACT_ABI: ContractABI[] = [
     // Defina sua ABI aqui
   ];
@@ -70,6 +69,10 @@ export function Bet({ match }: BetProps) {
       const web3 = new Web3(window.ethereum);
       const contrato = new web3.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS);
       const account = accounts[0];
+
+      if (!contrato.methods.aposta) {
+        throw new Error("A função 'aposta' não está definida no contrato.");
+      }
 
       const transaction = await contrato.methods
         .aposta(matchHash, betValue, selectedOdds)
@@ -147,26 +150,21 @@ export function Bet({ match }: BetProps) {
   };
 
   const renderOddsButtons = () => {
-    // Verificar se há dados de odds disponíveis
     if (!Array.isArray(oddsData)) {
       return null;
     }
 
-    // Procurar as odds para a partida selecionada
     const selectedMatchOdds = oddsData.find(
       (odds: any) => odds.fixture.id === match?.hash
     );
 
-    // Se não houver odds disponíveis para a partida selecionada
     if (!selectedMatchOdds) {
-      // Definir as odds padrão
       const defaultOdds = [
         { value: "Home", odd: "1.83" },
         { value: "Draw", odd: "2.90" },
         { value: "Away", odd: "4.75" },
       ];
 
-      // Retornar os botões de odds com as odds padrão
       return defaultOdds.map((value: any, index: number) => (
         <div key={index} className="mr-2">
           <Button
@@ -185,12 +183,12 @@ export function Bet({ match }: BetProps) {
 
   const getTeamName = (odds: number) => {
     switch (odds) {
-      case 4.5:
-        return "Bayern";
-      case 1.34:
+      case match?.oddHome:
+        return match?.teamHome || "";
+      case match?.oddDraw:
         return "Draw";
-      case 8.75:
-        return "Real Madrid";
+      case match?.oddAway:
+        return match?.teamAway || "";
       default:
         return "";
     }
