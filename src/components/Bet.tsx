@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Box } from "./Box.tsx";
-import { ethers } from "ethers";
+import Web3 from "web3";
 
 interface Match {
   hash: string;
@@ -45,7 +45,7 @@ export function Bet({ match }: BetProps) {
 
   const [oddsData, setOddsData] = useState<any[]>([]);
 
-  const CONTRACT_ADDRESS: string = "seu_endereço_do_contrato";
+  const CONTRACT_ADDRESS: string = "";
   const CONTRACT_ABI: ContractABI[] = [
     // Defina sua ABI aqui
   ];
@@ -67,26 +67,15 @@ export function Bet({ match }: BetProps) {
         throw new Error("Nenhuma conta conectada.");
       }
 
-      const provider = new ethers.BrowserProvider(window.ethereum);
+      const web3 = new Web3(window.ethereum);
+      const contrato = new web3.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS);
+      const account = accounts[0];
 
-      // Obtenha o signer
-      const signer = await provider.getSigner();
+      const transaction = await contrato.methods
+        .aposta(matchHash, betValue, selectedOdds)
+        .send({ from: account });
 
-      const contrato = new ethers.Contract(
-        CONTRACT_ADDRESS,
-        CONTRACT_ABI,
-        signer
-      );
-
-      const transaction = await contrato.enviarAposta(
-        matchHash,
-        betValue,
-        selectedOdds
-      );
-
-      await transaction.wait();
-
-      return transaction.hash;
+      return transaction.transactionHash;
     } catch (error: any) {
       console.error("Erro ao enviar aposta:", error.message);
       return false;
