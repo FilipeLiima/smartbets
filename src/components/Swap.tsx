@@ -45,7 +45,7 @@ export function Swap() {
 
   // Função para filtrar os tokens com base na consulta de pesquisa
   const filteredTokens = tokens.filter((token) =>
-    token.name.toLowerCase().includes(searchQuery.toLowerCase())
+    token.symbol.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   // Função para lidar com a seleção de um token da lista
@@ -145,7 +145,7 @@ export function Swap() {
                     className="absolute top-1/2 transform -translate-y-1/2 right-4 bg-gray-700 hover:bg-gray-600 text-lg text-white font-bold py-2 px-4 rounded-2xl"
                     onClick={() => setIsModalTopOpen(true)}
                   >
-                    {selectedTokenTop ? selectedTokenTop.name : "BET"}
+                    {selectedTokenTop ? selectedTokenTop.symbol : "BET"}
 
                     <ChevronDown className="ml-2 h-5 w-5 text-white inline-block" />
                   </Button>
@@ -174,7 +174,7 @@ export function Swap() {
                           className="text-white cursor-pointer hover:bg-gray-800 py-2 px-4 rounded"
                           onClick={() => handleTokenSelectTop(token)}
                         >
-                          {token.name}
+                          {token.symbol}
                         </li>
                       ))}
                     </ul>
@@ -213,7 +213,7 @@ export function Swap() {
                     onClick={() => setIsModalBottomOpen(true)}
                   >
                     {selectedTokenBottom
-                      ? selectedTokenBottom.name
+                      ? selectedTokenBottom.symbol
                       : "Selecionar um token"}
                     <ChevronDown className="ml-2 h-5 w-5 text-white inline-block" />
                   </Button>
@@ -242,7 +242,7 @@ export function Swap() {
                           className="text-white cursor-pointer hover:bg-gray-800 py-2 px-4 rounded"
                           onClick={() => handleTokenSelectBottom(token)}
                         >
-                          {token.name}
+                          {token.symbol}
                         </li>
                       ))}
                     </ul>

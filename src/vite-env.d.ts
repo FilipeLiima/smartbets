@@ -4,7 +4,7 @@
 interface Token {
   name: string;
   id: string;
-  // outras propriedades, se houver
+  symbol: string;
 }
 // Estendendo a interface global do Window para incluir ethereum
 interface Window {
