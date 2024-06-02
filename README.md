@@ -34,24 +34,24 @@
 
 ## Problem
 
-- Fraude e manipulação: A indústria de apostas enfrenta constantemente o desafio da fraude e manipulação de resultados.
-- Gestão de riscos: A natureza volátil das apostas pode expor as casas a riscos financeiros significativos. Flutuações imprevistas nos resultados dos eventos.
-- Segurança cibernética: As casas de apostas são alvos frequentes de ataques cibernéticos, incluindo roubo de dados do cliente, invasões de contas e manipulação de sistemas de pagamento.
-- Concorrência e retenção de clientes: mercado de apostas é altamente competitivo, com muitas casas disputando a atenção dos apostadores. Manter a fidelidade dos clientes e atrair novos jogadores requer estratégias eficazes de marketing, oferta de odds competitivas e uma experiência de usuário excepcional.
+- Fraud and manipulation: A betting industry constantly faces the challenge of fraud and manipulation of results.
+- Risk management: The volatile nature of betting can expose houses to significant financial risks. Unforeseen fluctuations in the results of events.
+- Cyber ​​security: Bookmakers are frequent targets of cyber attacks, including theft of customer data, account takeovers and manipulation of payment systems.
+- Competition and customer retention: the betting market is highly competitive, with many houses vying for bettors' attention. Maintaining customer loyalty and attracting new players requires strategic marketing strategies, offering competitive odds and an exceptional user experience.
 
 ## Solution
 
-- Transparência e confiança: A tecnologia blockchain oferece um registro imutável e transparente de todas as transações e atividades na plataforma de apostas.
-- Segurança dos fundos: Com contratos inteligentes e carteiras criptografadas, os usuários têm maior controle sobre seus fundos e transações.
-- Custos reduzidos: A eliminação de intermediários e a automatização de processos por meio de contratos inteligentes podem reduzir significativamente os custos operacionais.
-- Acesso global e inclusão financeira: A natureza descentralizada da web 3.0 permite o acesso global, independentemente de fronteiras geográficas ou barreiras financeiras.
-- Personalização e governança comunitária: Os usuários podem ter voz ativa nas decisões importantes, como mudanças nas regras ou distribuição de receitas, através de mecanismos de votação descentralizados
+- Transparency and trust: Blockchain technology offers an immutable and transparent record of all transactions and activities on the betting platform.
+- Security of funds: With smart contracts and crypto wallets, users have greater control over their funds and transactions.
+- Reduced costs: Eliminating intermediaries and automating processes through smart contracts can significantly reduce operational costs.
+- Global access and financial inclusion: The decentralized nature of web 3.0 allows for global access, regardless of geographic borders or financial barriers.
+- Personalization and community governance: Users can have a say in important decisions, such as rule changes or revenue distribution, through decentralized voting mechanisms
 
 ## Next steps
 
-- Implementar melhorias de desempenho e conectar VRF para dar mais transparência ao sorteio de NFT.
-- Lançar o produto ao público e estudar melhorias no tokenomics e staking do token ERC20.
-- Obter feedbacks, ajustar o design do produto conforme necessário e implementar outros tipos de apostas.
+- Implement performance improvements and connect VRF to provide more transparency to the NFT draw.
+- Launch the product to the public and study improvements in tokenomics and ERC20 token staking.
+- Obtain feedback, adjust product design as necessary and implement other types of bets.
 
 ## Contracts Summary Table
 
