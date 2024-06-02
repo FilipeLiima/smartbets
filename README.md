@@ -20,17 +20,13 @@
 
 2. Tools Used
 
-   2.1. Chainlink VRF - Verifiable Random Function
+   2.1. Chainlink Functions
 
-   2.2. Chainlink CCIP - Cross-Chain Interoperability Protocol
+   2.2. Chainlink Automation - Chainlink’s hyper-reliable Automation network
 
-   2.3. Chainlink Functions
+   2.3. API - Application Programming Interface
 
-   2.4. Chainlink Automation - Chainlink’s hyper-reliable Automation network
-
-   2.5. API - Application Programming Interface
-
-   2.6. Artificial Intelligence with OpenAI and ImagineArt with Vyro
+   2.4. Artificial Intelligence with OpenAI and ImagineArt with Vyro
 
 ## Problem
 
