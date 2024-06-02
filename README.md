@@ -8,33 +8,25 @@
 - Live demo [Website](https://smartbets.vercel.app/)
 - [Slide](https://github.com/FilipeLiima/smartbets) presentation
 
-**About Smart Bets**: SmartBets is an online betting platform that offers a safe, transparent and decentralized experience for its users. Our platform allows users to bet on a variety of sporting events including football, basketball, tennis and more, all in a decentralized and transparent way.
+**About Smart Bets**: SmartBets is an online betting platform that offers a safe, transparent and decentralized experience for its users. Our platform allows users to bet on events football, all in a decentralized and transparent way.
 
-Summary
+### Summary
 
 1. Introduction
 
 2. Tools Used
 
-3.1. Chainlink VRF - Verifiable Random Function
+   3.1. Chainlink VRF - Verifiable Random Function
 
-3.2. Chainlink CCIP - Cross-Chain Interoperability Protocol
+   3.2. Chainlink CCIP - Cross-Chain Interoperability Protocol
 
-3.3. Chainlink Functions
+   3.3. Chainlink Functions
 
-3.4. Chainlink Automation - Chainlink’s hyper-reliable Automation network
+   3.4. Chainlink Automation - Chainlink’s hyper-reliable Automation network
 
-3.5. Chainlink Tools Summary Table
+   3.5. API - Application Programming Interface
 
-3.6. API - Application Programming Interface
-
-3.7. Artificial Intelligence with OpenAI
-
-6. Evolution of the Protocol
-
-7. Conclusion
-
-8. Meet the Team
+   3.6. Artificial Intelligence with OpenAI
 
 ## Problem
 
