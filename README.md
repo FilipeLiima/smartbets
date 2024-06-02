@@ -1,6 +1,6 @@
-# SMART BETS:
+<h1 align="center">SMART BETS</h1>
 
-#### A Project Chainlink Block Magic Hackathon
+<h4 align="center">A Project Chainlink Block Magic Hackathon</h4>
 
 ### Links
 
