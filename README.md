@@ -2,7 +2,9 @@
 
 <h4 align="center">A Project Chainlink Block Magic Hackathon</h4>
 
-![alt text](logo2.png)
+<p align="center">
+  <img src="logo2.png" alt="alt text" width="200">
+</p>
 
 ### Links
 
