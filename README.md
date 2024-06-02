@@ -58,28 +58,28 @@
 
 ## Technology:
 
-● Blockchain
-○ Ethereum Sepolia
-● Blockchain Primitives
-○ Stablecoin - ERC20
-● Oracles
-○ Chainlink Functions
-○ Chainlink VRF
-○ Chainlink Automation
-● Programming Languages
-○ Solidity
-○ TypeScript
-● Frontend
-○ React
-○ Metamask Wallet
-○ Web3.js
-○ Shadcn-UI
-○ Vite
-○ Lucide icons
-● Backend
-○ API
-● Tools
-○ Generative AI - OpenAI
-○ AI image generator
-● Deploy
-○ Vercel
+- Blockchain
+  - Ethereum Sepolia
+- Blockchain Primitives
+  - Stablecoin - ERC20
+- Oracles
+  - Chainlink Functions
+  - Chainlink VRF
+  - Chainlink Automation
+- Programming Languages
+  - Solidity
+  - TypeScript
+- Frontend
+  - React
+  - Metamask Wallet
+  - Web3.js
+  - Shadcn-UI
+  - Vite
+  - Lucide icons
+- Backend
+  - API
+- Tools
+  - Generative AI - OpenAI
+  - AI image generator
+- Deploy
+  - Vercel
