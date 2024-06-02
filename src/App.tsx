@@ -234,6 +234,9 @@ export function App() {
           </div>
         </div>
       </div>
+      <footer className="bg-black text-white py-4 text-left p-8">
+        <p>© 2024 Smart Bets. All rights reserved.</p>
+      </footer>
     </div>
   );
 }
