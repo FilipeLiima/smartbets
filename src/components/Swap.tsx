@@ -152,17 +152,15 @@ export function Swap() {
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px] bg-gray-900 border-none text-lg text-white">
                   <DialogHeader>
-                    <DialogTitle>Selecione um token</DialogTitle>
-                    <DialogDescription>
-                      Pesquise pelo nome do token
-                    </DialogDescription>
+                    <DialogTitle>Select a token</DialogTitle>
+                    <DialogDescription>Search token name</DialogDescription>
                   </DialogHeader>
                   <div className="grid gap-4 py-4">
                     <div className="relative">
                       <Input
                         id="search"
                         className="bg-gray-800 border-gray-700 text-white text-lg py-2 px-8 rounded w-full"
-                        placeholder="Pesquise o nome"
+                        placeholder="Search the name"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                       />
@@ -185,7 +183,7 @@ export function Swap() {
                       className="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-2xl"
                       onClick={() => setIsModalTopOpen(false)}
                     >
-                      Fechar
+                      Close
                     </Button>
                   </div>
                 </DialogContent>
@@ -214,23 +212,21 @@ export function Swap() {
                   >
                     {selectedTokenBottom
                       ? selectedTokenBottom.symbol
-                      : "Selecionar um token"}
+                      : "Select a token"}
                     <ChevronDown className="ml-2 h-5 w-5 text-white inline-block" />
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px] bg-gray-900 border-none text-lg text-white">
                   <DialogHeader>
-                    <DialogTitle>Selecione um token</DialogTitle>
-                    <DialogDescription>
-                      Pesquise pelo nome do token
-                    </DialogDescription>
+                    <DialogTitle>Select a token</DialogTitle>
+                    <DialogDescription>Search token name</DialogDescription>
                   </DialogHeader>
                   <div className="grid gap-4 py-4">
                     <div className="relative">
                       <Input
                         id="search"
                         className="bg-gray-800 border-gray-700 text-white text-lg py-2 px-8 rounded w-full"
-                        placeholder="Pesquise o nome"
+                        placeholder="Search the name"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                       />
@@ -253,7 +249,7 @@ export function Swap() {
                       className="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-2xl"
                       onClick={() => setIsModalBottomOpen(false)}
                     >
-                      Fechar
+                      Close
                     </Button>
                   </div>
                 </DialogContent>
