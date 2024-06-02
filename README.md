@@ -10,7 +10,7 @@
 
 - Pitch deck video presentation is available on [Youtube](https://github.com/FilipeLiima/smartbets)
 - Live demo [Website](https://smartbets.vercel.app/)
-- [Slide](https://github.com/FilipeLiima/smartbets) presentation
+- [Slide](https://drive.google.com/file/d/1pu3DalV7yJKyU-1t4CartXWwTouZrAYr/view?usp=sharing) presentation
 
 **About Smart Bets**: SmartBets is an online betting platform that offers a safe, transparent and decentralized experience for its users. Our platform allows users to bet on events football, all in a decentralized and transparent way.
 
