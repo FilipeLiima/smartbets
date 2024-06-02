@@ -2,6 +2,10 @@
 
 <h4 align="center">A Project Chainlink Block Magic Hackathon</h4>
 
+<p align="center">
+  ![alt text](logo_.png)
+</p>
+
 ### Links
 
 - Pitch deck video presentation is available on [Youtube](https://github.com/FilipeLiima/smartbets)
