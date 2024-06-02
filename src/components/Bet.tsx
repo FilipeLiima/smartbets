@@ -446,7 +446,7 @@ export function Bet({ match }: BetProps) {
           <div className="mb-4 h-full flex flex-col justify-between">
             <Card className="bg-gray-900  text-white flex flex-col text-center p-8 border-none mx-4 h-full">
               <p className="text-white text-3xl font-bold  mb-2">
-                Step 2 – Enter the value::{" "}
+                Step 2 – Place your bet:{" "}
               </p>
               <div className="flex-1 flex flex-col justify-center items-center">
                 <Input

@@ -77,7 +77,7 @@ export function Auth() {
             } hover:bg-gray-700 py-2 px-4 m-2 rounded text-black`}
             onClick={() => setActiveTab("gamesStatus")}
           >
-            GAMES
+            BETTING MATCHES
           </Button>
         </div>
       </div>

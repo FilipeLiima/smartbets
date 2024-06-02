@@ -91,7 +91,7 @@ export function Games() {
     <div className="bg-black container mx-auto px-4">
       {!mostrarAposta && (
         <div className="text-center h-screen">
-          <h2 className="text-4xl font-bold text-gray-400">Featured Game</h2>
+          <h2 className="text-4xl font-bold text-gray-400">Featured Match</h2>
           <p className="text-green-400 mt-4 font-bold text-7xl ">
             Brazilian Championship Series A
           </p>
