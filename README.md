@@ -86,8 +86,7 @@
 
 ## Steps to run the code:
 
-1. Clone the repository:
-   - git clone https://github.com/FilipeLiima/smartbets.git
+1. Clone the repository: git clone https://github.com/FilipeLiima/smartbets.git
    - cd vite-project
    - npm i
    - npm run dev
