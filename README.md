@@ -86,6 +86,13 @@
 - Deploy
   - Vercel
 
+## Meet the Team:
+
+- [Filipe](https://github.com/FilipeLiima)
+- [Maurício](https://github.com/mzbasler)
+- [Silvio](https://github.com/SjrPovoas)
+- [Victor](https://github.com/victormendes99)
+
 ## Steps to run the code:
 
 1. Clone the repository: git clone https://github.com/FilipeLiima/smartbets.git
