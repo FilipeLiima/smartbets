@@ -52,9 +52,9 @@
 ## Contracts Summary Table
 
 | Contract        | Go to                                                                                                                  |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
 | Bet.sol         | [Check](https://github.com/victormendes99/SmartBet/blob/main/contracts/Bet.sol)                                        |
-| SBFunctions.sol | [Check](https://github.com/BellumGalaxy/BlockMagic-Team6/blob/Barba-SmartContracts/SmartContracts/src/SBFunctions.sol) |
+| SBFunctions.sol | [Check](https://github.com/BellumGalaxy/BlockMagic-Team6/blob/Barba-SmartContracts/SmartContracts/src/SBFunctions.sol) | Address: 0x7Fb581244bCfE94E0C5767cb67926b21BfeBe2b6 |
 
 ## Technology:
 
