@@ -8,7 +8,7 @@
 
 ### Links
 
-- Pitch deck video presentation is available on [Youtube](https://github.com/FilipeLiima/smartbets)
+- Pitch deck video presentation is available on [Youtube](https://www.youtube.com/watch?v=ZRYuuD15oMs)
 - Live demo [Website](https://smartbets.vercel.app/)
 - [Slide](https://drive.google.com/file/d/1pu3DalV7yJKyU-1t4CartXWwTouZrAYr/view?usp=sharing) presentation
 
