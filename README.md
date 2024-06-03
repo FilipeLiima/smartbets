@@ -56,6 +56,8 @@
 | Bet.sol         | [Check](https://github.com/victormendes99/SmartBet/blob/main/contracts/Bet.sol)                                        | 0x73cc5E1F0aa704c5EDcbcCa97F9c9Ef0Fc9F977b |
 | SBFunctions.sol | [Check](https://github.com/BellumGalaxy/BlockMagic-Team6/blob/Barba-SmartContracts/SmartContracts/src/SBFunctions.sol) | 0x7Fb581244bCfE94E0C5767cb67926b21BfeBe2b6 |
 
+- OBS: We were unable to synchronize the same front API with the contract to interact with functions due to inconsistencies and data availability in the free version. We plan to resolve this as soon as possible as the platform gains more functions.
+
 ## Technology:
 
 - Blockchain
