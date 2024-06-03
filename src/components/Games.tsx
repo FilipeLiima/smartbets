@@ -16,9 +16,9 @@ interface Match {
   goalsAway: number;
   status: string;
   result: number;
-  oddHome: number; // Adicione essa propriedade
-  oddDraw: number; // Adicione essa propriedade
-  oddAway: number; // Adicione essa propriedade
+  oddHome: number;
+  oddDraw: number;
+  oddAway: number;
 }
 
 export function Games() {
