@@ -1,4 +1,4 @@
-<h1 align="center">SMART BETS</h1>
+<h1 align="center">SMARTBETS</h1>
 
 <h4 align="center">A Project Chainlink Block Magic Hackathon</h4>
 

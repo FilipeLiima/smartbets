@@ -7,6 +7,7 @@ import { Blend } from "lucide-react";
 import { Fingerprint } from "lucide-react";
 import Blockchain from "./assets/blockchain.svg";
 import Bola from "./assets/bola.svg";
+import Logo from "./assets/logo.svg";
 import Chainlink from "./assets/chainlink.svg";
 import Avalanche from "./assets/avalanche.svg";
 import DataFeeds from "./assets/datafeeds.svg";
@@ -50,7 +51,7 @@ export function App() {
   return (
     <div className="bg-black min-h-screen w-screen relative">
       <img
-        src="src/assets/logo.svg"
+        src={Logo}
         alt="Logo"
         className="absolute top-0 left-0 m-5"
         style={{ width: "200px", height: "auto" }}
