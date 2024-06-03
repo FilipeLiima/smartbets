@@ -90,3 +90,5 @@
    - cd vite-project
    - npm i
    - npm run dev
+
+## Special thanks to [Bellum Galaxy](https://github.com/BellumGalaxy) for all the support and encouragement!
